@@ -77,11 +77,13 @@ export default function SAGDashboard() {
       await axios.post(
         `https://pmsss-backend.vercel.app/api/verify/${selectedDoc._id}`,
         {
-          status,
+          status: status === "verify" ? "verified" : "rejected",
           remarks,
         }
       );
-      toast.success(`Document ${status} successfully`);
+      toast.success(
+        `Document ${status === "verify" ? "verified" : "rejected"} successfully`
+      );
       setSelectedDoc(null);
       setRemarks("");
       await fetchDocuments();
