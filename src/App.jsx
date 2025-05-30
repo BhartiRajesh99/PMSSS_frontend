@@ -31,7 +31,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   if (!user) {
     return (
       <Navigate
-        to="https://pmsss-frontend.vercel.app/login"
+        to="/login"
         state={{ from: location.pathname }}
         replace
       />
@@ -40,7 +40,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
   // If role is not allowed, redirect to home
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to="https://pmsss-frontend.vercel.app/" replace />;
+    return <Navigate to="/" replace />;
   }
 
   // If authenticated and role is allowed, render children
@@ -62,7 +62,7 @@ const PublicRoute = ({ children }) => {
 
   // If user is authenticated, redirect to home
   if (user) {
-    return <Navigate to="https://pmsss-frontend.vercel.app/" replace />;
+    return <Navigate to="/" replace />;
   }
 
   // If not authenticated, render children
@@ -76,10 +76,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
-        <Route
-          path="https://pmsss-frontend.vercel.app/register"
-          element={<Register />}
-        />
+        <Route path="/register" element={<Register />} />
         <Route path="/register/sag" element={<SAGRegister />} />
         <Route path="/register/finance" element={<FinanceRegister />} />
         <Route path="/register/student" element={<StudentRegister />} />
