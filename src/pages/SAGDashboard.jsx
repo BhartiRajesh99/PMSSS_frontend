@@ -33,37 +33,25 @@ export default function SAGDashboard() {
 
   const fetchDocuments = async () => {
     try {
-      // Fetch pending documents for the table
-      const pendingResponse = await axios.get(
+      const response = await axios.get(
         "https://pmsss-backend.vercel.app/api/verify/pending"
       );
-      if (pendingResponse.data && Array.isArray(pendingResponse.data)) {
-        setDocuments(pendingResponse.data);
-      } else {
-        setDocuments([]);
-        toast.error("Invalid response format from server");
-      }
-
-      // Fetch all documents for stats
-      const statsResponse = await axios.get(
-        "https://pmsss-backend.vercel.app/api/documents",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      if (statsResponse.data && Array.isArray(statsResponse.data)) {
-        const allDocs = statsResponse.data;
+      if (response.data && Array.isArray(response.data)) {
+        setDocuments(response.data);
+        // Calculate stats
         const stats = {
-          total: allDocs.length,
-          pending: allDocs.filter((doc) => doc.status === "pending").length,
-          verified: allDocs.filter((doc) => doc.status === "verified").length,
-          rejected: allDocs.filter((doc) => doc.status === "rejected").length,
+          total: response.data.length,
+          pending: response.data.filter((doc) => doc.status === "pending")
+            .length,
+          verified: response.data.filter((doc) => doc.status === "verified")
+            .length,
+          rejected: response.data.filter((doc) => doc.status === "rejected")
+            .length,
         };
         setStats(stats);
       } else {
-        toast.error("Invalid stats response format from server");
+        setDocuments([]);
+        toast.error("Invalid response format from server");
       }
     } catch (error) {
       console.error("Error fetching documents:", error);
