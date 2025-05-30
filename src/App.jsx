@@ -75,31 +75,16 @@ function App() {
       <Toaster position="top-right" />
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<Login />} />
-        <Route
-          path="https://pmsss-frontend.vercel.app/login"
-          element={<Login />}
-        />
-        <Route
-          path="https://pmsss-frontend.vercel.app/register"
-          element={<Register />}
-        />
-        <Route
-          path="https://pmsss-frontend.vercel.app/register/sag"
-          element={<SAGRegister />}
-        />
-        <Route
-          path="https://pmsss-frontend.vercel.app/register/finance"
-          element={<FinanceRegister />}
-        />
-        <Route
-          path="https://pmsss-frontend.vercel.app/register/student"
-          element={<StudentRegister />}
-        />
+        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/register/sag" element={<SAGRegister />} />
+        <Route path="/register/finance" element={<FinanceRegister />} />
+        <Route path="/register/student" element={<StudentRegister />} />
 
         {/* Protected Routes */}
         <Route
-          path="https://pmsss-frontend.vercel.app/sag-dashboard"
+          path="/sag-dashboard"
           element={
             <ProtectedRoute allowedRoles={["sag_bureau"]}>
               <SAGDashboard />
@@ -107,7 +92,7 @@ function App() {
           }
         />
         <Route
-          path="https://pmsss-frontend.vercel.app/finance-dashboard"
+          path="/finance-dashboard"
           element={
             <ProtectedRoute allowedRoles={["finance_bureau"]}>
               <FinanceDashboard />
@@ -115,7 +100,7 @@ function App() {
           }
         />
         <Route
-          path="https://pmsss-frontend.vercel.app/student-dashboard"
+          path="/student-dashboard"
           element={
             <ProtectedRoute allowedRoles={["student"]}>
               <StudentDashboard />
@@ -124,7 +109,7 @@ function App() {
         />
 
         {/* Redirect root to login */}
-        <Route path="https://pmsss-frontend.vercel.app/" element={<Login />} />
+        <Route path="/" element={<Login />} />
       </Routes>
     </AuthProvider>
   );

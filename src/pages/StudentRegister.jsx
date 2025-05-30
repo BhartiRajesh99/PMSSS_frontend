@@ -135,7 +135,7 @@ export default function StudentRegister() {
         formattedData
       );
       toast.success("Registration successful!");
-      navigate("https://pmsss-frontend.vercel.app/login");
+      navigate("/login");
     } catch (error) {
       console.error("Registration error:", error.response?.data || error);
       toast.error(error.response?.data?.message || "Registration failed");
@@ -665,7 +665,7 @@ export default function StudentRegister() {
         <p className="mt-2 text-center text-sm text-gray-600">
           Or{" "}
           <Link
-            to="https://pmsss-frontend.vercel.app/login"
+            to="/login"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
             sign in to your account
