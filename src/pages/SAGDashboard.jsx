@@ -74,13 +74,26 @@ export default function SAGDashboard() {
 
     setVerifying(true);
     try {
-      await axios.post(
+      console.log("Verifying document:", {
+        documentId: selectedDoc._id,
+        status: status === "verify" ? "verified" : "rejected",
+        remarks,
+      });
+
+      const response = await axios.post(
         `https://pmsss-backend.vercel.app/api/verify/${selectedDoc._id}`,
         {
           status: status === "verify" ? "verified" : "rejected",
           remarks,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       );
+
+      console.log("Verification response:", response.data);
       toast.success(
         `Document ${status === "verify" ? "verified" : "rejected"} successfully`
       );
@@ -88,7 +101,11 @@ export default function SAGDashboard() {
       setRemarks("");
       await fetchDocuments();
     } catch (error) {
-      console.error("Error verifying document:", error);
+      console.error("Error verifying document:", {
+        error: error.response?.data,
+        status: error.response?.status,
+        message: error.message,
+      });
       toast.error(
         error.response?.data?.message || `Failed to ${status} document`
       );
