@@ -57,15 +57,16 @@ export const AuthProvider = ({ children }) => {
           password,
         }
       );
-
-      const { token, user } = response.data;
-      localStorage.setItem("token", token);
-      setUser(user);
-      toast.success("Login successful");
-      return user;
+      console.error(response)
+      if(!response.data){
+        const { token, user } = response.data;
+        localStorage.setItem("token", token);
+        setUser(user);
+        toast.success("Login successful");
+        return user;
+      }
     } catch (error) {
       console.error("Login error:", error);
-      toast.error(error.response?.data?.message || "Login failed");
       throw error;
     }
   };

@@ -33,8 +33,7 @@ export default function Login() {
           navigate("/");
       }
     } catch (error) {
-      console.error("Login error:", error);
-
+      
       // Handle specific error cases
       if (error?.statusCode === 401) {
         toast.error("Invalid email or password. Please try again.");
