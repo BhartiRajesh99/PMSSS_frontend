@@ -123,20 +123,32 @@ export default function SAGRegister() {
     try {
       // Format the data according to the SAG model requirements
       const registrationData = {
-        name: formData.organizationDetails.name,
+        name: formData.organizationDetails.contactPerson.name,
         email: formData.organizationDetails.contactPerson.email,
         password: formData.password,
         organizationDetails: {
           name: formData.organizationDetails.name,
           type: formData.organizationDetails.type,
           registrationNumber: formData.organizationDetails.registrationNumber,
-          address: formData.organizationDetails.address,
-          contactPerson: formData.organizationDetails.contactPerson,
+          address: {
+            street: formData.organizationDetails.address.street,
+            city: formData.organizationDetails.address.city,
+            state: formData.organizationDetails.address.state,
+            pincode: formData.organizationDetails.address.pincode,
+          },
+          contactPerson: {
+            name: formData.organizationDetails.contactPerson.name,
+            designation: formData.organizationDetails.contactPerson.designation,
+            phone: formData.organizationDetails.contactPerson.phone,
+            email: formData.organizationDetails.contactPerson.email,
+          },
         },
-        settings: formData.settings,
       };
 
-      console.log("Sending registration data:", registrationData);
+      console.log("Sending registration data:", {
+        ...registrationData,
+        password: "[REDACTED]",
+      });
       const response = await axios.post(
         "https://pmsss-backend.vercel.app/api/auth/register/sag",
         registrationData

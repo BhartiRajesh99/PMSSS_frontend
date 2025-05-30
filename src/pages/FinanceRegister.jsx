@@ -144,22 +144,24 @@ export default function FinanceRegister() {
         password: formData.password,
         departmentName: formData.departmentDetails.name,
         departmentCode: formData.departmentDetails.code,
-        address: formData.departmentDetails.address,
+        address: {
+          street: formData.departmentDetails.address.street,
+          city: formData.departmentDetails.address.city,
+          state: formData.departmentDetails.address.state,
+          pincode: formData.departmentDetails.address.pincode,
+        },
         contactPerson: {
           name: formData.departmentDetails.contactPerson.name,
           designation: formData.departmentDetails.contactPerson.designation,
           phone: formData.departmentDetails.contactPerson.phone,
           email: formData.departmentDetails.contactPerson.email,
         },
-        settings: {
-          maxPaymentsPerDay: formData.financialSettings.maxPaymentAmount,
-          autoPaymentThreshold: formData.financialSettings.autoPaymentThreshold,
-          notificationPreferences: {
-            email: true,
-            sms: true,
-          },
-        },
       };
+
+      console.log("Sending registration data:", {
+        ...formattedData,
+        password: "[REDACTED]",
+      });
 
       const response = await axios.post(
         "https://pmsss-backend.vercel.app/api/auth/register/finance",
