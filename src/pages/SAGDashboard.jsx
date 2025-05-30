@@ -99,6 +99,7 @@ export default function SAGDashboard() {
       );
       setSelectedDoc(null);
       setRemarks("");
+      console.log("1")
       await fetchDocuments();
     } catch (error) {
       console.error("Error verifying document:", {
