@@ -31,7 +31,7 @@ const StudentDashboard = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("https://pmsss-backend.vercel.app/login");
+    navigate("/login");
   };
 
   const handleDrop = useCallback(

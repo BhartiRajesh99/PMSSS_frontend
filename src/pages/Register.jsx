@@ -15,13 +15,13 @@ export default function Register() {
     setSelectedRole(role);
     switch (role) {
       case "sag_bureau":
-        navigate("https://pmsss-backend.vercel.app/register/sag");
+        navigate("/sag");
         break;
       case "finance_bureau":
-        navigate("https://pmsss-backend.vercel.app/register/finance");
+        navigate("/finance");
         break;
       case "student":
-        navigate("https://pmsss-backend.vercel.app/register/student");
+        navigate("/student");
         break;
       default:
         break;
@@ -37,7 +37,7 @@ export default function Register() {
         <p className="mt-2 text-center text-sm text-gray-600">
           Or{" "}
           <Link
-            to="https://pmsss-backend.vercel.app/login"
+            to="/login"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
             sign in to your account

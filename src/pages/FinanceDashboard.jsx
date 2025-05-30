@@ -31,7 +31,7 @@ export default function FinanceDashboard() {
 
   const handleLogout = () => {
     logout();
-    navigate("https://pmsss-backend.vercel.app/login");
+    navigate("/login");
   };
 
   const fetchDocuments = async () => {
