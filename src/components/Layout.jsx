@@ -5,11 +5,19 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../contexts/AuthContext";
 
 const navigation = [
-  { name: "Student Dashboard", href: "/student-dashboard", roles: ["student"] },
-  { name: "SAG Dashboard", href: "/sag-dashboard", roles: ["sag_bureau"] },
+  {
+    name: "Student Dashboard",
+    href: "https://pmsss-frontend.vercel.app/student-dashboard",
+    roles: ["student"],
+  },
+  {
+    name: "SAG Dashboard",
+    href: "https://pmsss-frontend.vercel.app/sag-dashboard",
+    roles: ["sag_bureau"],
+  },
   {
     name: "Finance Dashboard",
-    href: "/finance-dashboard",
+    href: "https://pmsss-frontend.vercel.app/finance-dashboard",
     roles: ["finance_bureau"],
   },
 ];
@@ -24,11 +32,11 @@ export default function Layout() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("https://pmsss-frontend.vercel.app/login");
   };
 
   const userNavigation = [
-    { name: "Your Profile", href: "#" },
+    { name: "Your Profile", href: "https://pmsss-frontend.vercel.app/login" },
     { name: "Sign out", onClick: handleLogout },
   ];
 
@@ -41,7 +49,7 @@ export default function Layout() {
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <div className="flex flex-shrink-0 items-center">
-                    <img className="h-8 w-auto" src="/logo.png" alt="PMSSS" />
+                    {/* <img className="h-8 w-auto" src="/logo.png" alt="PMSSS" /> */}
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     {navigation
