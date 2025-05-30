@@ -84,7 +84,12 @@ export default function SAGDashboard() {
         `https://pmsss-backend.vercel.app/api/verify/${selectedDoc._id}`,
         {
           status: status === "verify" ? "verified" : "rejected",
-          remarks,
+          remarks: remarks || "No remarks provided",
+          verificationDetails: {
+            verifiedBy: user._id,
+            verifiedAt: new Date().toISOString(),
+            remarks: remarks || "No remarks provided",
+          },
         },
         {
           headers: {
@@ -99,7 +104,6 @@ export default function SAGDashboard() {
       );
       setSelectedDoc(null);
       setRemarks("");
-      console.log("1")
       await fetchDocuments();
     } catch (error) {
       console.error("Error verifying document:", {
