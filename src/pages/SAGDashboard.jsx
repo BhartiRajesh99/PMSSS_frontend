@@ -36,15 +36,11 @@ export default function SAGDashboard() {
       const response = await axios.get(
         "https://pmsss-backend.vercel.app/api/verify/pending"
       );
-
-      const totalDocuments = await axios.get(
-        "https://pmsss-backend.vercel.app/all"
-      );
       if (response.data && Array.isArray(response.data)) {
         setDocuments(response.data);
         // Calculate stats
         const stats = {
-          total: totalDocuments.length,
+          total: response.data.length,
           pending: response.data.filter((doc) => doc.status === "pending")
             .length,
           verified: response.data.filter((doc) => doc.status === "verified")
