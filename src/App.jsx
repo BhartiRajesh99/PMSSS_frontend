@@ -75,6 +75,7 @@ function App() {
       <Toaster position="top-right" />
       <Routes>
         {/* Public Routes */}
+        <Route path="/" element={<Login />} />
         <Route
           path="https://pmsss-frontend.vercel.app/login"
           element={<Login />}
