@@ -28,12 +28,14 @@ export default function SAGDashboard() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("https://pmsss-backend.vercel.app/login");
   };
 
   const fetchDocuments = async () => {
     try {
-      const response = await axios.get("/api/verify/pending");
+      const response = await axios.get(
+        "https://pmsss-backend.vercel.app/api/verify/pending"
+      );
       if (response.data && Array.isArray(response.data)) {
         setDocuments(response.data);
         // Calculate stats
@@ -72,10 +74,13 @@ export default function SAGDashboard() {
 
     setVerifying(true);
     try {
-      await axios.post(`/api/verify/${selectedDoc._id}`, {
-        status,
-        remarks,
-      });
+      await axios.post(
+        `https://pmsss-backend.vercel.app/api/verify/${selectedDoc._id}`,
+        {
+          status,
+          remarks,
+        }
+      );
       toast.success(`Document ${status} successfully`);
       setSelectedDoc(null);
       setRemarks("");

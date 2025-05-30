@@ -21,16 +21,16 @@ export default function Login() {
       // Redirect based on role
       switch (user.role) {
         case "student":
-          navigate("/student-dashboard");
+          navigate("https://pmsss-backend.vercel.app/student-dashboard");
           break;
         case "sag_bureau":
-          navigate("/sag-dashboard");
+          navigate("https://pmsss-backend.vercel.app/sag-dashboard");
           break;
         case "finance_bureau":
-          navigate("/finance-dashboard");
+          navigate("https://pmsss-backend.vercel.app/finance-dashboard");
           break;
         default:
-          navigate("/");
+          navigate("https://pmsss-backend.vercel.app/");
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -49,7 +49,7 @@ export default function Login() {
         <p className="mt-2 text-center text-sm text-gray-600">
           Or{" "}
           <Link
-            to="/register"
+            to="https://pmsss-backend.vercel.app/register"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
             create a new account

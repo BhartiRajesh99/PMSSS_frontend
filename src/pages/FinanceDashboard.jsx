@@ -31,12 +31,14 @@ export default function FinanceDashboard() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("https://pmsss-backend.vercel.app/login");
   };
 
   const fetchDocuments = async () => {
     try {
-      const response = await axios.get("/api/payments/all");
+      const response = await axios.get(
+        "https://pmsss-backend.vercel.app/api/payments/all"
+      );
       setDocuments(response.data);
 
       // Calculate stats
@@ -78,7 +80,7 @@ export default function FinanceDashboard() {
     setProcessing(true);
     try {
       await axios.post(
-        `/api/payments/${selectedDoc._id}`,
+        `https://pmsss-backend.vercel.app/api/payments/${selectedDoc._id}`,
         {
           status,
           remarks,

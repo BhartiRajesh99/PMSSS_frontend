@@ -29,12 +29,18 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
   // If not authenticated, redirect to login
   if (!user) {
-    return <Navigate to="/login" state={{ from: location.pathname }} replace />;
+    return (
+      <Navigate
+        to="https://pmsss-backend.vercel.app/login"
+        state={{ from: location.pathname }}
+        replace
+      />
+    );
   }
 
   // If role is not allowed, redirect to home
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="https://pmsss-backend.vercel.app/" replace />;
   }
 
   // If authenticated and role is allowed, render children
@@ -56,7 +62,7 @@ const PublicRoute = ({ children }) => {
 
   // If user is authenticated, redirect to home
   if (user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="https://pmsss-backend.vercel.app/" replace />;
   }
 
   // If not authenticated, render children
@@ -69,15 +75,30 @@ function App() {
       <Toaster position="top-right" />
       <Routes>
         {/* Public Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/register/sag" element={<SAGRegister />} />
-        <Route path="/register/finance" element={<FinanceRegister />} />
-        <Route path="/register/student" element={<StudentRegister />} />
+        <Route
+          path="https://pmsss-backend.vercel.app/login"
+          element={<Login />}
+        />
+        <Route
+          path="https://pmsss-backend.vercel.app/register"
+          element={<Register />}
+        />
+        <Route
+          path="https://pmsss-backend.vercel.app/register/sag"
+          element={<SAGRegister />}
+        />
+        <Route
+          path="https://pmsss-backend.vercel.app/register/finance"
+          element={<FinanceRegister />}
+        />
+        <Route
+          path="https://pmsss-backend.vercel.app/register/student"
+          element={<StudentRegister />}
+        />
 
         {/* Protected Routes */}
         <Route
-          path="/sag-dashboard"
+          path="https://pmsss-backend.vercel.app/sag-dashboard"
           element={
             <ProtectedRoute allowedRoles={["sag_bureau"]}>
               <SAGDashboard />
@@ -85,7 +106,7 @@ function App() {
           }
         />
         <Route
-          path="/finance-dashboard"
+          path="https://pmsss-backend.vercel.app/finance-dashboard"
           element={
             <ProtectedRoute allowedRoles={["finance_bureau"]}>
               <FinanceDashboard />
@@ -93,7 +114,7 @@ function App() {
           }
         />
         <Route
-          path="/student-dashboard"
+          path="https://pmsss-backend.vercel.app/student-dashboard"
           element={
             <ProtectedRoute allowedRoles={["student"]}>
               <StudentDashboard />
@@ -102,7 +123,7 @@ function App() {
         />
 
         {/* Redirect root to login */}
-        <Route path="/" element={<Login />} />
+        <Route path="https://pmsss-backend.vercel.app/" element={<Login />} />
       </Routes>
     </AuthProvider>
   );

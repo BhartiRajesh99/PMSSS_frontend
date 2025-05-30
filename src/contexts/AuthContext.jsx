@@ -24,7 +24,9 @@ export const AuthProvider = ({ children }) => {
         return;
       }
 
-      const response = await axios.get("/api/auth/me");
+      const response = await axios.get(
+        "https://pmsss-backend.vercel.app/api/auth/me"
+      );
       setUser(response.data);
     } catch (error) {
       console.error("Auth check failed:", error);
@@ -48,10 +50,13 @@ export const AuthProvider = ({ children }) => {
       }
 
       // Make login request based on role
-      const response = await axios.post(`/api/auth/login/${role}`, {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `https://pmsss-backend.vercel.app/api/auth/login/${role}`,
+        {
+          email,
+          password,
+        }
+      );
 
       const { token, user } = response.data;
       localStorage.setItem("token", token);
@@ -67,7 +72,10 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post("/api/auth/register", userData);
+      const response = await axios.post(
+        "https://pmsss-backend.vercel.app/api/auth/register",
+        userData
+      );
       const { token, user } = response.data;
       localStorage.setItem("token", token);
       setUser(user);

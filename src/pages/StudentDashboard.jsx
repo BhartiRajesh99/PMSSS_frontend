@@ -13,7 +13,7 @@ import {
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 
-const API_BASE_URL = "http://localhost:5000/api"; // Add base URL
+const API_BASE_URL = "https://pmsss-backend.vercel.app/api"; // Add base URL
 
 const StudentDashboard = () => {
   const { user, logout } = useAuth();
@@ -31,7 +31,7 @@ const StudentDashboard = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("https://pmsss-backend.vercel.app/login");
   };
 
   const handleDrop = useCallback(

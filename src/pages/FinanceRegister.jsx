@@ -162,11 +162,11 @@ export default function FinanceRegister() {
       };
 
       const response = await axios.post(
-        "/api/auth/register/finance",
+        "https://pmsss-backend.vercel.app/api/auth/register/finance",
         formattedData
       );
       toast.success("Registration successful!");
-      navigate("/login");
+      navigate("https://pmsss-backend.vercel.app/login");
     } catch (error) {
       console.error("Registration error:", error.response?.data);
       toast.error(error.response?.data?.message || "Registration failed");
@@ -499,7 +499,7 @@ export default function FinanceRegister() {
         <p className="mt-2 text-center text-sm text-gray-600">
           Or{" "}
           <Link
-            to="/login"
+            to="https://pmsss-backend.vercel.app/login"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
             sign in to your account
