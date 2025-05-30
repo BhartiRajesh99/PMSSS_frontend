@@ -46,7 +46,12 @@ export default function SAGDashboard() {
 
       // Fetch all documents for stats
       const statsResponse = await axios.get(
-        "https://pmsss-backend.vercel.app/api/verify/all"
+        "https://pmsss-backend.vercel.app/api/documents",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       if (statsResponse.data && Array.isArray(statsResponse.data)) {
         const allDocs = statsResponse.data;
