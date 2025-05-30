@@ -58,9 +58,7 @@ export const AuthProvider = ({ children }) => {
         }
       );
       console.log(response)
-      if(!response.success){
-        throw response;
-      }
+      
       const { token, user } = response.data;
       localStorage.setItem("token", token);
       setUser(user);
