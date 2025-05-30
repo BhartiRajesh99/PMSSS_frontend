@@ -33,7 +33,6 @@ export default function Login() {
           navigate("/");
       }
     } catch (error) {
-      
       // Handle specific error cases
       if (error?.statusCode === 401) {
         toast.error("Invalid email or password. Please try again.");
@@ -43,8 +42,7 @@ export default function Login() {
         toast.error("Network error. Please check your internet connection.");
       } else {
         toast.error(
-          error?.message ||
-            "Unable to sign in. Please try again later."
+          error?.message || "Unable to sign in. Please try again later."
         );
       }
     } finally {
