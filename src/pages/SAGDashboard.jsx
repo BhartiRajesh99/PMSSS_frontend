@@ -239,27 +239,27 @@ export default function SAGDashboard() {
                       <tr>
                         <th
                           scope="col"
-                          className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                          className="py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 sm:pl-6"
                         >
                           Student
                         </th>
                         <th
                           scope="col"
-                          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
                         >
                           Document Type
                         </th>
                         <th
                           scope="col"
-                          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
                         >
                           Uploaded
                         </th>
                         <th
                           scope="col"
-                          className="relative py-3.5 pl-3 pr-4 sm:pr-6"
+                          className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
                         >
-                          <span className="sr-only">Actions</span>
+                          Actions
                         </th>
                       </tr>
                     </thead>
@@ -287,10 +287,10 @@ export default function SAGDashboard() {
                                 ? new Date(doc.createdAt).toLocaleDateString()
                                 : "N/A"}
                             </td>
-                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
                               <button
                                 onClick={() => setSelectedDoc(doc)}
-                                className="text-indigo-600 hover:text-indigo-900"
+                                className="text-indigo-600 text-center hover:text-indigo-900"
                               >
                                 Verify
                               </button>
