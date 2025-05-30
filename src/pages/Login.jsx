@@ -44,7 +44,7 @@ export default function Login() {
         toast.error("Network error. Please check your internet connection.");
       } else {
         toast.error(
-          error?.message ||
+          
             "Unable to sign in. Please try again later."
         );
       }
