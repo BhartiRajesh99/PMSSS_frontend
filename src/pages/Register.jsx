@@ -15,13 +15,13 @@ export default function Register() {
     setSelectedRole(role);
     switch (role) {
       case "sag_bureau":
-        navigate("/sag");
+        navigate("/register/sag");
         break;
       case "finance_bureau":
-        navigate("/finance");
+        navigate("/register/finance");
         break;
       case "student":
-        navigate("/student");
+        navigate("/register/student");
         break;
       default:
         break;
