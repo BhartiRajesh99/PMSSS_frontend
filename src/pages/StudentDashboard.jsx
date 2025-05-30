@@ -52,7 +52,7 @@ const StudentDashboard = () => {
 
         const formData = new FormData();
         formData.append("document", file);
-        formData.append("documentType", selectedType);
+        formData.append("type", selectedType);
 
         // Log FormData contents
         for (let pair of formData.entries()) {
