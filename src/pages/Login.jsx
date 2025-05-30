@@ -36,15 +36,15 @@ export default function Login() {
       console.error("Login error:", error);
 
       // Handle specific error cases
-      if (error.response?.status === 401) {
+      if (error?.statusCode === 401) {
         toast.error("Invalid email or password. Please try again.");
-      } else if (error.response?.status === 403) {
+      } else if (error?.statusCode === 403) {
         toast.error("You don't have permission to access this role.");
       } else if (!error.response) {
         toast.error("Network error. Please check your internet connection.");
       } else {
         toast.error(
-          error.response?.data?.message ||
+          error?.message ||
             "Unable to sign in. Please try again later."
         );
       }
