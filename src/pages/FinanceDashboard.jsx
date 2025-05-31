@@ -294,9 +294,9 @@ export default function FinanceDashboard() {
                         </th>
                         <th
                           scope="col"
-                          className="relative py-3.5 pl-3 pr-4 sm:pr-6"
+                          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                         >
-                          <span className="sr-only">Actions</span>
+                          Actions
                         </th>
                       </tr>
                     </thead>

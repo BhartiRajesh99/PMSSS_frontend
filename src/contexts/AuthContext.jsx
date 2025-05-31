@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
         toast.error("Please provide both email and password");
         throw new Error("Email and password are required");
       }
-      console.log("here")
+      
       // Make login request based on role
       const response = await axios.post(
         `https://pmsss-backend.vercel.app/api/auth/login/${role}`,
