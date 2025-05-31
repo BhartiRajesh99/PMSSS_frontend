@@ -58,8 +58,8 @@ export const AuthProvider = ({ children }) => {
         }
       );
 
-      if (!response.data.success) {
-        throw response.data;
+      if (!response.success) {
+        throw response;
       }
 
       const { token, user } = response.data;
