@@ -20,6 +20,7 @@ export default function SAGDashboard() {
   const [verifying, setVerifying] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
   const [remarks, setRemarks] = useState("");
+  const [processingAction, setProcessingAction] = useState(null);
   const [stats, setStats] = useState({
     total: 0,
     pending: 0,
@@ -74,7 +75,7 @@ export default function SAGDashboard() {
       return;
     }
 
-    setVerifying(true);
+    setProcessingAction(status);
     try {
       console.log("Verifying document:", {
         documentId: selectedDoc._id,
@@ -105,6 +106,7 @@ export default function SAGDashboard() {
       );
       setSelectedDoc(null);
       setRemarks("");
+      setProcessingAction(null);
       await fetchDocuments();
     } catch (error) {
       console.error("Error verifying document:", {
@@ -115,8 +117,7 @@ export default function SAGDashboard() {
       toast.error(
         error.response?.data?.message || `Failed to ${status} document`
       );
-    } finally {
-      setVerifying(false);
+      setProcessingAction(null);
     }
   };
 
@@ -426,19 +427,19 @@ export default function SAGDashboard() {
               <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
                 <button
                   type="button"
-                  disabled={verifying}
+                  disabled={processingAction !== null}
                   onClick={() => handleVerify("verify")}
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm disabled:opacity-50"
                 >
-                  {verifying ? "Verifying..." : "Verify"}
+                  {processingAction === "verify" ? "Verifying..." : "Verify"}
                 </button>
                 <button
                   type="button"
-                  disabled={verifying}
+                  disabled={processingAction !== null}
                   onClick={() => handleVerify("reject")}
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm disabled:opacity-50"
                 >
-                  {verifying ? "Rejecting..." : "Reject"}
+                  {processingAction === "reject" ? "Rejecting..." : "Reject"}
                 </button>
               </div>
             </div>

@@ -17,9 +17,9 @@ export default function FinanceDashboard() {
   const navigate = useNavigate();
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [processing, setProcessing] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
   const [remarks, setRemarks] = useState("");
+  const [processingAction, setProcessingAction] = useState(null);
   const [stats, setStats] = useState({
     total: 0,
     pending: 0,
@@ -36,11 +36,10 @@ export default function FinanceDashboard() {
 
   const fetchDocuments = async () => {
     try {
-      console.log("y1")
       const response = await axios.get(
         "https://pmsss-backend.vercel.app/api/payments/all"
       );
-      console.log("y2");
+
       setDocuments(response.data);
 
       // Calculate stats
@@ -79,13 +78,17 @@ export default function FinanceDashboard() {
       return;
     }
 
-    setProcessing(true);
+    setProcessingAction(status);
     try {
-      await axios.post(
-        `https://pmsss-backend.vercel.app/api/payments/${selectedDoc._id}`,
+      const response = await axios.post(
+        `https://pmsss-backend.vercel.app/api/finance/${selectedDoc._id}`,
         {
           status,
-          remarks,
+          remarks: remarks || "No remarks provided",
+          processingDetails: {
+            processedBy: user._id,
+            processedAt: new Date().toISOString(),
+          },
         },
         {
           headers: {
@@ -93,14 +96,18 @@ export default function FinanceDashboard() {
           },
         }
       );
-      toast.success(`Payment ${status} successfully`);
+
+      toast.success(`Document marked as ${status} successfully`);
       setSelectedDoc(null);
       setRemarks("");
+      setProcessingAction(null);
       await fetchDocuments();
     } catch (error) {
-      toast.error(`Failed to ${status} payment`);
-    } finally {
-      setProcessing(false);
+      console.error("Error processing document:", error);
+      toast.error(
+        error.response?.data?.message || `Failed to process document`
+      );
+      setProcessingAction(null);
     }
   };
 
@@ -321,10 +328,12 @@ export default function FinanceDashboard() {
                             ₹{doc.amount?.toLocaleString() || "N/A"}
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            {doc.verifiedBy?.name || "N/A"}
+                            {doc.verificationDetails?.verifiedBy?.name || "N/A"}
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            {new Date(doc.verifiedAt).toLocaleDateString()}
+                            {new Date(
+                              doc.verificationDetails?.verifiedAt
+                            ).toLocaleDateString()}
                           </td>
                           <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                             <button
@@ -388,7 +397,7 @@ export default function FinanceDashboard() {
                   Verified By
                 </label>
                 <p className="mt-1 text-sm text-gray-900">
-                  {selectedDoc.verifiedBy?.name || "N/A"}
+                  {selectedDoc.verificationDetails?.verifiedBy?.name || "N/A"}
                 </p>
               </div>
 
@@ -405,40 +414,34 @@ export default function FinanceDashboard() {
                 />
               </div>
 
-              <div className="flex justify-end space-x-3">
+              <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-3 sm:gap-3 sm:grid-flow-row-dense">
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedDoc(null);
-                    setRemarks("");
-                  }}
-                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  disabled={processing}
+                  disabled={processingAction !== null}
                   onClick={() => handleProcess("processing")}
                   className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
                 >
-                  {processing ? "Processing..." : "Mark as Processing"}
+                  {processingAction === "processing"
+                    ? "Processing..."
+                    : "Mark as Processing"}
                 </button>
                 <button
                   type="button"
-                  disabled={processing}
+                  disabled={processingAction !== null}
                   onClick={() => handleProcess("paid")}
                   className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
                 >
-                  {processing ? "Processing..." : "Mark as Paid"}
+                  {processingAction === "paid"
+                    ? "Processing..."
+                    : "Mark as Paid"}
                 </button>
                 <button
                   type="button"
-                  disabled={processing}
+                  disabled={processingAction !== null}
                   onClick={() => handleProcess("rejected")}
                   className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50"
                 >
-                  {processing ? "Processing..." : "Reject"}
+                  {processingAction === "rejected" ? "Processing..." : "Reject"}
                 </button>
               </div>
             </div>
