@@ -267,38 +267,40 @@ export default function SAGDashboard() {
                     </thead>
                     <tbody className="divide-y divide-gray-200 bg-white">
                       {documents && documents.length > 0 ? (
-                        documents.map((doc) => (
-                          <tr key={doc._id} className="hover:bg-gray-50">
-                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                              {doc.student?.name || "N/A"}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {doc.type
-                                ? doc.type
-                                    .split("_")
-                                    .map(
-                                      (word) =>
-                                        word.charAt(0).toUpperCase() +
-                                        word.slice(1)
-                                    )
-                                    .join(" ")
-                                : "N/A"}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {doc.createdAt
-                                ? new Date(doc.createdAt).toLocaleDateString()
-                                : "N/A"}
-                            </td>
-                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
-                              <button
-                                onClick={() => setSelectedDoc(doc)}
-                                className="text-indigo-600 text-center hover:text-indigo-900"
-                              >
-                                Verify
-                              </button>
-                            </td>
-                          </tr>
-                        ))
+                        documents
+                          .filter((doc) => doc.status === "pending")
+                          .map((doc) => (
+                            <tr key={doc._id} className="hover:bg-gray-50">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                {doc.student?.name || "N/A"}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {doc.type
+                                  ? doc.type
+                                      .split("_")
+                                      .map(
+                                        (word) =>
+                                          word.charAt(0).toUpperCase() +
+                                          word.slice(1)
+                                      )
+                                      .join(" ")
+                                  : "N/A"}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {doc.createdAt
+                                  ? new Date(doc.createdAt).toLocaleDateString()
+                                  : "N/A"}
+                              </td>
+                              <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
+                                <button
+                                  onClick={() => setSelectedDoc(doc)}
+                                  className="text-indigo-600 text-center hover:text-indigo-900"
+                                >
+                                  Verify
+                                </button>
+                              </td>
+                            </tr>
+                          ))
                       ) : (
                         <tr>
                           <td
