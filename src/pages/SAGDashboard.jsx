@@ -261,6 +261,12 @@ export default function SAGDashboard() {
                           scope="col"
                           className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
                         >
+                          View Document
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
+                        >
                           Actions
                         </th>
                       </tr>
@@ -292,22 +298,22 @@ export default function SAGDashboard() {
                                   : "N/A"}
                               </td>
                               <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
-                                <div className="flex justify-center space-x-3">
-                                  <button
-                                    onClick={() =>
-                                      window.open(doc.documentUrl, "_blank")
-                                    }
-                                    className="text-blue-600 hover:text-blue-900"
-                                  >
-                                    View
-                                  </button>
-                                  <button
-                                    onClick={() => setSelectedDoc(doc)}
-                                    className="text-indigo-600 hover:text-indigo-900"
-                                  >
-                                    Verify
-                                  </button>
-                                </div>
+                                <button
+                                  onClick={() =>
+                                    window.open(doc.fileUrl, "_blank")
+                                  }
+                                  className="text-blue-600 text-center hover:text-blue-900"
+                                >
+                                  View
+                                </button>
+                              </td>
+                              <td>
+                                <button
+                                  onClick={() => setSelectedDoc(doc)}
+                                  className="text-indigo-600 text-center hover:text-indigo-900"
+                                >
+                                  Verify
+                                </button>
                               </td>
                             </tr>
                           ))
