@@ -19,6 +19,7 @@ export default function SAGDashboard() {
   const [loading, setLoading] = useState(true);
   const [verifying, setVerifying] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
+  const [viewingDoc, setViewingDoc] = useState(null);
   const [remarks, setRemarks] = useState("");
   const [stats, setStats] = useState({
     total: 0,
@@ -299,9 +300,7 @@ export default function SAGDashboard() {
                               </td>
                               <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
                                 <button
-                                  onClick={() =>
-                                    window.open(doc.fileUrl, "_blank")
-                                  }
+                                  onClick={() => setViewingDoc(doc)}
                                   className="text-indigo-600 text-center hover:text-indigo-900"
                                 >
                                   View
@@ -335,6 +334,41 @@ export default function SAGDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Document Viewer Modal */}
+      {viewingDoc && (
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-4xl w-full p-6 relative">
+            <button
+              onClick={() => setViewingDoc(null)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-500"
+            >
+              <XMarkIcon className="h-6 w-6" />
+            </button>
+            <div className="mt-4">
+              <h3 className="text-lg font-medium text-gray-900 mb-4">
+                Document Preview
+              </h3>
+              <div className="border rounded-lg p-4 bg-gray-50">
+                {viewingDoc.fileUrl &&
+                  (viewingDoc.fileUrl.match(/\.(jpg|jpeg|png|gif)$/i) ? (
+                    <img
+                      src={viewingDoc.fileUrl}
+                      alt="Document preview"
+                      className="max-w-full h-auto rounded-lg shadow-lg"
+                    />
+                  ) : (
+                    <iframe
+                      src={viewingDoc.fileUrl}
+                      className="w-full h-[600px] rounded-lg shadow-lg"
+                      title="Document viewer"
+                    />
+                  ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Verification Modal */}
       {selectedDoc && (
