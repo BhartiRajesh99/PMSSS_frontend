@@ -36,9 +36,11 @@ export default function FinanceDashboard() {
 
   const fetchDocuments = async () => {
     try {
+      console.log("y1")
       const response = await axios.get(
         "https://pmsss-backend.vercel.app/api/payments/all"
       );
+      console.log("y2");
       setDocuments(response.data);
 
       // Calculate stats
