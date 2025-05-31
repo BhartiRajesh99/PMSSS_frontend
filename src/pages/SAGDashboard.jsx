@@ -90,7 +90,6 @@ export default function SAGDashboard() {
           verificationDetails: {
             verifiedBy: user._id,
             verifiedAt: new Date().toISOString(),
-            remarks: remarks || "No remarks provided",
           },
         },
         {
