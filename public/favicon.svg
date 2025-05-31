@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with tricolor gradient -->
+  <defs>
+    <linearGradient id="tricolor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9933"/>
+      <stop offset="50%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#138808"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" fill="url(#tricolor)"/>
+  
+  <!-- Ashoka Chakra inspired element -->
+  <circle cx="16" cy="16" r="8" stroke="#000080" stroke-width="1.5" fill="none"/>
+  <circle cx="16" cy="16" r="6" stroke="#000080" stroke-width="1.5" fill="none"/>
+  
+  <!-- Book/Education symbol -->
+  <path d="M12 10L20 10L20 22L12 22L12 10Z" fill="#000080" fill-opacity="0.8"/>
+  <path d="M14 12L18 12M14 16L18 16M14 20L18 20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+</svg> 
