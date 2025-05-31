@@ -331,7 +331,7 @@ export default function FinanceDashboard() {
                               doc.verificationDetails?.verifiedAt
                             ).toLocaleDateString()}
                           </td>
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                             <button
                               onClick={() => setSelectedDoc(doc)}
                               className="text-indigo-600 text-center hover:text-indigo-900"
