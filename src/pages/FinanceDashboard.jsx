@@ -81,14 +81,10 @@ export default function FinanceDashboard() {
     setProcessingAction(status);
     try {
       const response = await axios.post(
-        `https://pmsss-backend.vercel.app/api/finance/${selectedDoc._id}`,
+        `https://pmsss-backend.vercel.app/api/payments/${selectedDoc._id}`,
         {
           status,
           remarks: remarks || "No remarks provided",
-          processingDetails: {
-            processedBy: user._id,
-            processedAt: new Date().toISOString(),
-          },
         },
         {
           headers: {
