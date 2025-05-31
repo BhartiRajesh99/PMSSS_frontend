@@ -335,9 +335,9 @@ export default function SAGDashboard() {
         </div>
       </div>
 
-      {/* Document Viewer Modal */}
+      {/* Document Preview Modal */}
       {viewingDoc && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg max-w-4xl w-full p-6 relative">
             <button
               onClick={() => setViewingDoc(null)}
@@ -345,26 +345,29 @@ export default function SAGDashboard() {
             >
               <XMarkIcon className="h-6 w-6" />
             </button>
+            <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">
+              Document Preview
+            </h3>
             <div className="mt-4">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">
-                Document Preview
-              </h3>
-              <div className="border rounded-lg p-4 bg-gray-50">
-                {viewingDoc.fileUrl &&
-                  (viewingDoc.fileUrl.match(/\.(jpg|jpeg|png|gif)$/i) ? (
+              {viewingDoc.fileUrl && (
+                <div className="border rounded-lg p-2">
+                  {viewingDoc.fileUrl.match(/\.(jpg|jpeg|png|gif)$/i) ? (
                     <img
                       src={viewingDoc.fileUrl}
                       alt="Document preview"
-                      className="max-w-full h-auto rounded-lg shadow-lg"
+                      className="max-w-full h-auto rounded"
                     />
                   ) : (
-                    <iframe
-                      src={viewingDoc.fileUrl}
-                      className="w-full h-[600px] rounded-lg shadow-lg"
-                      title="Document viewer"
-                    />
-                  ))}
-              </div>
+                    <div className="flex items-center justify-center p-4">
+                      <iframe
+                        src={viewingDoc.fileUrl}
+                        className="w-full h-[600px] rounded"
+                        title="Document preview"
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
