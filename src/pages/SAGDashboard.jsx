@@ -39,6 +39,7 @@ export default function SAGDashboard() {
       if (response.data && Array.isArray(response.data)) {
         setDocuments(response.data);
         // Calculate stats
+        console.log(response)
         const stats = {
           total: response.data.length,
           pending: response.data.filter((doc) => doc.status === "pending")
