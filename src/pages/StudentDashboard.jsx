@@ -121,9 +121,22 @@ const StudentDashboard = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
+
       // Ensure response.data is an array
       const docs = Array.isArray(response.data.data) ? response.data.data : [];
       setDocuments(docs);
+
+      const stats = {
+        total: response?.data?.data.length,
+        pending: response?.data?.data.filter((doc) => doc.status === "pending").length,
+        verified: response?.data?.data.filter((doc) => doc.status === "verified")
+          .length,
+        rejected: response?.data?.data.filter((doc) => doc.status === "rejected")
+          .length,
+      };
+
+      setStats(stats);
+
     } catch (error) {
       console.error("Error fetching documents:", error);
       toast.error(error.response?.data?.error || "Error fetching documents");
