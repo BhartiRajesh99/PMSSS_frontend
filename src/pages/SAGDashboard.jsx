@@ -9,6 +9,7 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   ArrowRightOnRectangleIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 
 export default function SAGDashboard() {
@@ -39,7 +40,7 @@ export default function SAGDashboard() {
       if (response.data && Array.isArray(response.data)) {
         setDocuments(response.data);
         // Calculate stats
-        console.log(response)
+
         const stats = {
           total: response.data.length,
           pending: response.data.filter((doc) => doc.status === "pending")
@@ -320,7 +321,16 @@ export default function SAGDashboard() {
       {/* Verification Modal */}
       {selectedDoc && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-lg w-full p-6">
+          <div className="bg-white rounded-lg max-w-lg w-full p-6 relative">
+            <button
+              onClick={() => {
+                setSelectedDoc(null);
+                setRemarks("");
+              }}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-500"
+            >
+              <XMarkIcon className="h-6 w-6" />
+            </button>
             <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">
               Verify Document
             </h3>
