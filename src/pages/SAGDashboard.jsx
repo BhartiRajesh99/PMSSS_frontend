@@ -292,12 +292,22 @@ export default function SAGDashboard() {
                                   : "N/A"}
                               </td>
                               <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
-                                <button
-                                  onClick={() => setSelectedDoc(doc)}
-                                  className="text-indigo-600 text-center hover:text-indigo-900"
-                                >
-                                  Verify
-                                </button>
+                                <div className="flex justify-center space-x-3">
+                                  <button
+                                    onClick={() =>
+                                      window.open(doc.documentUrl, "_blank")
+                                    }
+                                    className="text-blue-600 hover:text-blue-900"
+                                  >
+                                    View
+                                  </button>
+                                  <button
+                                    onClick={() => setSelectedDoc(doc)}
+                                    className="text-indigo-600 hover:text-indigo-900"
+                                  >
+                                    Verify
+                                  </button>
+                                </div>
                               </td>
                             </tr>
                           ))
@@ -360,6 +370,39 @@ export default function SAGDashboard() {
                         .join(" ")
                     : "N/A"}
                 </p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Document Preview
+                </label>
+                <div className="mt-2">
+                  {selectedDoc.documentUrl && (
+                    <div className="border rounded-lg p-2">
+                      {selectedDoc.documentUrl.match(
+                        /\.(jpg|jpeg|png|gif)$/i
+                      ) ? (
+                        <img
+                          src={selectedDoc.documentUrl}
+                          alt="Document preview"
+                          className="max-w-full h-auto rounded"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center p-4">
+                          <a
+                            href={selectedDoc.documentUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-indigo-600 hover:text-indigo-900 flex items-center"
+                          >
+                            <DocumentCheckIcon className="h-5 w-5 mr-2" />
+                            View Document
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
 
               <div>
