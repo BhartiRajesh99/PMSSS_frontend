@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import toast from "react-hot-toast";
+import backgroundImage from "../assets/iewek-gnos-hhUx08PuYpc-unsplash.jpg";
+import BackButton from "../components/BackButton";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -42,7 +44,8 @@ export default function Login() {
         toast.error("Network error. Please check your internet connection.");
       } else {
         toast.error(
-          error?.response?.data?.error || "Unable to sign in. Please try again later."
+          error?.response?.data?.error ||
+            "Unable to sign in. Please try again later."
         );
       }
     } finally {
@@ -51,53 +54,76 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to your account
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          Or{" "}
-          <Link
-            to="/register"
-            className="font-medium text-indigo-600 hover:text-indigo-500"
-          >
-            create a new account
-          </Link>
-        </p>
+    <div className="min-h-screen flex">
+      <BackButton />
+      {/* Left side - Background Image */}
+      <div className="hidden lg:block lg:w-1/2 relative">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            filter: "brightness(0.5)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/40 via-indigo-800/30 to-blue-700/40" />
+        <div className="relative h-full flex items-center justify-center px-12">
+          <div className="text-white">
+            <h1 className="text-4xl font-bold mb-4">Welcome Back!</h1>
+            <p className="text-lg text-gray-200">
+              Access your PMSSS Portal account to manage your scholarships and
+              applications.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label
-                htmlFor="role"
-                className="block text-sm font-medium text-gray-700"
+      {/* Right side - Login Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="w-full max-w-md space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 text-center">
+              Sign in to your account
+            </h2>
+            <p className="mt-3 text-center text-sm text-gray-600">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-200"
               >
-                Login as
-              </label>
-              <select
-                id="role"
-                name="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-              >
-                <option value="student">Student</option>
-                <option value="sag">SAG Bureau</option>
-                <option value="finance">Finance Bureau</option>
-              </select>
-            </div>
+                Create one now
+              </Link>
+            </p>
+          </div>
 
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email address
-              </label>
-              <div className="mt-1">
+          <div className="mt-8 bg-white py-8 px-6 shadow-xl rounded-2xl sm:px-10">
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div>
+                <label
+                  htmlFor="role"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Login as
+                </label>
+                <select
+                  id="role"
+                  name="role"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  className="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                >
+                  <option value="student">Student</option>
+                  <option value="sag">SAG Bureau</option>
+                  <option value="finance">Finance Bureau</option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Email address
+                </label>
                 <input
                   id="email"
                   name="email"
@@ -106,19 +132,18 @@ export default function Login() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                  placeholder="Enter your email"
                 />
               </div>
-            </div>
 
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Password
-              </label>
-              <div className="mt-1">
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Password
+                </label>
                 <input
                   id="password"
                   name="password"
@@ -127,21 +152,48 @@ export default function Login() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                  placeholder="Enter your password"
                 />
               </div>
-            </div>
 
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-              >
-                {loading ? "Signing in..." : "Sign in"}
-              </button>
-            </div>
-          </form>
+              <div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loading ? (
+                    <span className="flex items-center">
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Signing in...
+                    </span>
+                  ) : (
+                    "Sign in"
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

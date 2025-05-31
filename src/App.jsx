@@ -3,14 +3,13 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
 import SAGRegister from "./pages/SAGRegister";
 import FinanceRegister from "./pages/FinanceRegister";
 import StudentRegister from "./pages/StudentRegister";
 import SAGDashboard from "./pages/SAGDashboard";
 import FinanceDashboard from "./pages/FinanceDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
-import Layout from "./components/Layout";
+import Landing from "./pages/Landing";
 import "./App.css";
 
 // Protected Route component
@@ -29,13 +28,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
   // If not authenticated, redirect to login
   if (!user) {
-    return (
-      <Navigate
-        to="/login"
-        state={{ from: location.pathname }}
-        replace
-      />
-    );
+    return <Navigate to="/login" state={{ from: location.pathname }} replace />;
   }
 
   // If role is not allowed, redirect to home
@@ -75,8 +68,9 @@ function App() {
       <Toaster position="top-right" />
       <Routes>
         {/* Public Routes */}
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Landing />} />
         <Route path="/register/sag" element={<SAGRegister />} />
         <Route path="/register/finance" element={<FinanceRegister />} />
         <Route path="/register/student" element={<StudentRegister />} />
@@ -106,9 +100,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        {/* Redirect root to login */}
-        <Route path="/" element={<Login />} />
       </Routes>
     </AuthProvider>
   );

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../utils/axios";
 import toast from "react-hot-toast";
+import backgroundImage from "../assets/iewek-gnos-hhUx08PuYpc-unsplash.jpg";
+import BackButton from "../components/BackButton";
 
 export default function StudentRegister() {
   const navigate = useNavigate();
@@ -53,7 +55,10 @@ export default function StudentRegister() {
   });
 
   const inputClasses =
-    "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-2";
+    "block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 bg-white/50 backdrop-blur-sm";
+
+  const selectClasses =
+    "block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 bg-white/50 backdrop-blur-sm";
 
   const handleChange = (e, section, subsection = null) => {
     const { name, value } = e.target;
@@ -199,7 +204,7 @@ export default function StudentRegister() {
             required
             value={formData.personalDetails.gender}
             onChange={(e) => handleChange(e, "personalDetails")}
-            className={inputClasses}
+            className={selectClasses}
           >
             <option value="">Select Gender</option>
             <option value="male">Male</option>
@@ -318,7 +323,7 @@ export default function StudentRegister() {
             required
             value={formData.personalDetails.category}
             onChange={(e) => handleChange(e, "personalDetails")}
-            className={inputClasses}
+            className={selectClasses}
           >
             <option value="">Select Category</option>
             <option value="GEN">General</option>
@@ -629,7 +634,7 @@ export default function StudentRegister() {
   );
 
   const renderStepIndicator = () => (
-    <div className="flex justify-between mb-8">
+    <div className="flex justify-between mb-12">
       {[1, 2, 3].map((step) => (
         <div
           key={step}
@@ -638,15 +643,15 @@ export default function StudentRegister() {
           }`}
         >
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center ${
+            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
               currentStep === step
-                ? "bg-indigo-600 text-white"
+                ? "bg-indigo-600 text-white scale-110"
                 : "bg-gray-200 text-gray-600"
             }`}
           >
             {step}
           </div>
-          <div className="ml-2">
+          <div className="ml-3 text-sm font-medium">
             {step === 1 && "Personal Details"}
             {step === 2 && "Academic Details"}
             {step === 3 && "Bank Details"}
@@ -657,59 +662,110 @@ export default function StudentRegister() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Student Registration
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          Or{" "}
-          <Link
-            to="/login"
-            className="font-medium text-indigo-600 hover:text-indigo-500"
-          >
-            sign in to your account
-          </Link>
-        </p>
+    <div className="min-h-screen flex">
+      <BackButton />
+      {/* Left side - Background Image */}
+      <div className="hidden lg:block lg:w-1/2 relative">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            filter: "brightness(0.5)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/40 via-indigo-800/30 to-blue-700/40" />
+        <div className="relative h-full flex items-center justify-center px-12">
+          <div className="text-white">
+            <h1 className="text-4xl font-bold mb-4">Join PMSSS Portal</h1>
+            <p className="text-lg text-gray-200">
+              Create your account to access scholarship opportunities and manage
+              your educational journey.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-3xl">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          {renderStepIndicator()}
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            {currentStep === 1 && renderStep1()}
-            {currentStep === 2 && renderStep2()}
-            {currentStep === 3 && renderStep3()}
+      {/* Right side - Registration Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div className="w-full max-w-3xl space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 text-center">
+              Student Registration
+            </h2>
+            <p className="mt-3 text-center text-sm text-gray-600">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-200"
+              >
+                Sign in
+              </Link>
+            </p>
+          </div>
 
-            <div className="flex justify-between">
-              {currentStep > 1 && (
-                <button
-                  type="button"
-                  onClick={() => setCurrentStep(currentStep - 1)}
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-                >
-                  Previous
-                </button>
-              )}
-              {currentStep < 3 ? (
-                <button
-                  type="button"
-                  onClick={() => setCurrentStep(currentStep + 1)}
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Next
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  {loading ? "Registering..." : "Register"}
-                </button>
-              )}
-            </div>
-          </form>
+          <div className="mt-8 bg-white/80 backdrop-blur-sm py-8 px-6 shadow-xl rounded-2xl sm:px-10">
+            {renderStepIndicator()}
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              {currentStep === 1 && renderStep1()}
+              {currentStep === 2 && renderStep2()}
+              {currentStep === 3 && renderStep3()}
+
+              <div className="flex justify-between pt-6">
+                {currentStep > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => setCurrentStep(currentStep - 1)}
+                    className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-200"
+                  >
+                    Previous
+                  </button>
+                )}
+                {currentStep < 3 ? (
+                  <button
+                    type="button"
+                    onClick={() => setCurrentStep(currentStep + 1)}
+                    className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading ? (
+                      <span className="flex items-center">
+                        <svg
+                          className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
+                        </svg>
+                        Registering...
+                      </span>
+                    ) : (
+                      "Complete Registration"
+                    )}
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

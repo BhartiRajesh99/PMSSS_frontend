@@ -10,7 +10,9 @@ import {
   XCircleIcon,
   DocumentTextIcon,
   ArrowRightOnRectangleIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
+import BackButton from "../components/BackButton";
 
 export default function FinanceDashboard() {
   const { user, logout } = useAuth();
@@ -116,344 +118,365 @@ export default function FinanceDashboard() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header with Logout */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-semibold text-gray-900">
-          Finance Dashboard
-        </h1>
-        <button
-          onClick={handleLogout}
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          <ArrowRightOnRectangleIcon className="h-5 w-5 mr-2" />
-          Logout
-        </button>
-      </div>
-
-      {/* Stats Section */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-6 mb-8">
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Fixed Header */}
+      <div className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <DocumentTextIcon className="h-6 w-6 text-gray-400" />
-              </div>
-              <div className="ml-5 w-0 flex-1">
-                <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">
-                    Total Documents
-                  </dt>
-                  <dd className="text-lg font-semibold text-gray-900">
-                    {stats.total}
-                  </dd>
-                </dl>
-              </div>
+              <BackButton />
             </div>
-          </div>
-        </div>
-
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <ClockIcon className="h-6 w-6 text-yellow-400" />
-              </div>
-              <div className="ml-5 w-0 flex-1">
-                <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">
-                    Pending
-                  </dt>
-                  <dd className="text-lg font-semibold text-gray-900">
-                    {stats.pending}
-                  </dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <ClockIcon className="h-6 w-6 text-blue-400" />
-              </div>
-              <div className="ml-5 w-0 flex-1">
-                <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">
-                    Processing
-                  </dt>
-                  <dd className="text-lg font-semibold text-gray-900">
-                    {stats.processing}
-                  </dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <CheckCircleIcon className="h-6 w-6 text-green-400" />
-              </div>
-              <div className="ml-5 w-0 flex-1">
-                <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">
-                    Paid
-                  </dt>
-                  <dd className="text-lg font-semibold text-gray-900">
-                    {stats.paid}
-                  </dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <XCircleIcon className="h-6 w-6 text-red-400" />
-              </div>
-              <div className="ml-5 w-0 flex-1">
-                <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">
-                    Rejected
-                  </dt>
-                  <dd className="text-lg font-semibold text-gray-900">
-                    {stats.rejected}
-                  </dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white overflow-hidden shadow rounded-lg">
-          <div className="p-5">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <CurrencyDollarIcon className="h-6 w-6 text-green-400" />
-              </div>
-              <div className="ml-5 w-0 flex-1">
-                <dl>
-                  <dt className="text-sm font-medium text-gray-500 truncate">
-                    Total Amount
-                  </dt>
-                  <dd className="text-lg font-semibold text-gray-900">
-                    ₹{stats.totalAmount.toLocaleString()}
-                  </dd>
-                </dl>
-              </div>
+              <button
+                onClick={handleLogout}
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md"
+              >
+                <ArrowRightOnRectangleIcon className="h-5 w-5 mr-2" />
+                Logout
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Documents Table */}
-      <div className="bg-white shadow sm:rounded-lg">
-        <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">
-            Verified Documents for Payment Processing
-          </h3>
-          <div className="mt-4 flex flex-col">
-            <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                  <table className="min-w-full divide-y divide-gray-300">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 sm:pl-6"
-                        >
-                          Student
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
-                        >
-                          Document Type
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
-                        >
-                          Amount
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
-                        >
-                          Verified By
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
-                        >
-                          Verified On
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"
-                        >
-                          Actions
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200 bg-white">
-                      {documents.map((doc) => (
-                        <tr key={doc._id} className="hover:bg-gray-50">
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                            {doc.student.name}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            {doc.type
-                              .split("_")
-                              .map(
-                                (word) =>
-                                  word.charAt(0).toUpperCase() + word.slice(1)
-                              )
-                              .join(" ")}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            ₹{doc.amount?.toLocaleString() || "N/A"}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            {doc.verificationDetails?.verifiedBy?.name || "N/A"}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            {new Date(
-                              doc.verificationDetails?.verifiedAt
-                            ).toLocaleDateString()}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            <button
-                              onClick={() => setSelectedDoc(doc)}
-                              className="text-indigo-600 text-center hover:text-indigo-900"
-                            >
-                              Process
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+      {/* Main Content with top padding to account for fixed header */}
+      <div className="pt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-center text-gray-900 mb-2">
+              Finance Dashboard
+            </h1>
+            <p className="text-gray-600 text-center">
+              Process and manage student payments
+            </p>
+          </div>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+            <div className="bg-white overflow-hidden shadow-sm rounded-xl border border-gray-100 hover:shadow-md transition-shadow duration-200">
+              <div className="p-5">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 p-3 bg-indigo-50 rounded-lg">
+                    <DocumentTextIcon className="h-6 w-6 text-indigo-600" />
+                  </div>
+                  <div className="ml-5 w-0 flex-1">
+                    <dl>
+                      <dt className="text-sm font-medium text-gray-500 truncate">
+                        Total Documents
+                      </dt>
+                      <dd className="text-lg font-semibold text-gray-900">
+                        {stats.total}
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white overflow-hidden shadow-sm rounded-xl border border-gray-100 hover:shadow-md transition-shadow duration-200">
+              <div className="p-5">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 p-3 bg-yellow-50 rounded-lg">
+                    <ClockIcon className="h-6 w-6 text-yellow-500" />
+                  </div>
+                  <div className="ml-5 w-0 flex-1">
+                    <dl>
+                      <dt className="text-sm font-medium text-gray-500 truncate">
+                        Pending
+                      </dt>
+                      <dd className="text-lg font-semibold text-gray-900">
+                        {stats.pending}
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white overflow-hidden shadow-sm rounded-xl border border-gray-100 hover:shadow-md transition-shadow duration-200">
+              <div className="p-5">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 p-3 bg-blue-50 rounded-lg">
+                    <ClockIcon className="h-6 w-6 text-blue-500" />
+                  </div>
+                  <div className="ml-5 w-0 flex-1">
+                    <dl>
+                      <dt className="text-sm font-medium text-gray-500 truncate">
+                        Processing
+                      </dt>
+                      <dd className="text-lg font-semibold text-gray-900">
+                        {stats.processing}
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white overflow-hidden shadow-sm rounded-xl border border-gray-100 hover:shadow-md transition-shadow duration-200">
+              <div className="p-5">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 p-3 bg-green-50 rounded-lg">
+                    <CheckCircleIcon className="h-6 w-6 text-green-500" />
+                  </div>
+                  <div className="ml-5 w-0 flex-1">
+                    <dl>
+                      <dt className="text-sm font-medium text-gray-500 truncate">
+                        Paid
+                      </dt>
+                      <dd className="text-lg font-semibold text-gray-900">
+                        {stats.paid}
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white overflow-hidden shadow-sm rounded-xl border border-gray-100 hover:shadow-md transition-shadow duration-200">
+              <div className="p-5">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 p-3 bg-red-50 rounded-lg">
+                    <XCircleIcon className="h-6 w-6 text-red-500" />
+                  </div>
+                  <div className="ml-5 w-0 flex-1">
+                    <dl>
+                      <dt className="text-sm font-medium text-gray-500 truncate">
+                        Rejected
+                      </dt>
+                      <dd className="text-lg font-semibold text-gray-900">
+                        {stats.rejected}
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white overflow-hidden shadow-sm rounded-xl border border-gray-100 hover:shadow-md transition-shadow duration-200">
+              <div className="p-5">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0 p-3 bg-green-50 rounded-lg">
+                    <CurrencyDollarIcon className="h-6 w-6 text-green-500" />
+                  </div>
+                  <div className="ml-5 w-0 flex-1">
+                    <dl>
+                      <dt className="text-sm font-medium text-gray-500 truncate">
+                        Total Amount
+                      </dt>
+                      <dd className="text-lg font-semibold text-gray-900">
+                        ₹{stats.totalAmount.toLocaleString()}
+                      </dd>
+                    </dl>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Processing Modal */}
-      {selectedDoc && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-lg w-full p-6">
-            <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">
-              Process Payment
-            </h3>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Student
-                </label>
-                <p className="mt-1 text-sm text-gray-900">
-                  {selectedDoc.student.name}
-                </p>
-              </div>
+          {/* Documents Table */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="px-6 py-5 border-b border-gray-100">
+              <h3 className="text-lg font-semibold text-center text-gray-900">
+                Verified Documents for Payment Processing
+              </h3>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-center text-xs font-bold text-gray-800 uppercase tracking-wider"
+                    >
+                      Student
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-center text-xs font-bol text-gray-800 uppercase tracking-wider"
+                    >
+                      Document Type
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-center text-xs font-bold text-gray-800 uppercase tracking-wider"
+                    >
+                      Amount
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-center text-xs font-bold text-gray-800 uppercase tracking-wider"
+                    >
+                      Verified By
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-center text-xs font-bold text-gray-800 uppercase tracking-wider"
+                    >
+                      Verified On
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-center text-xs font-bold text-gray-800 uppercase tracking-wider"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {documents.map((doc) => (
+                    <tr
+                      key={doc._id}
+                      className="hover:bg-gray-50 transition-colors duration-150"
+                    >
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {doc.student.name}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {doc.type
+                          .split("_")
+                          .map(
+                            (word) =>
+                              word.charAt(0).toUpperCase() + word.slice(1)
+                          )
+                          .join(" ")}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        ₹{doc.amount?.toLocaleString() || "N/A"}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {doc.verificationDetails?.verifiedBy?.name || "N/A"}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {new Date(
+                          doc.verificationDetails?.verifiedAt
+                        ).toLocaleDateString()}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+                        <button
+                          onClick={() => setSelectedDoc(doc)}
+                          className="text-indigo-600 hover:text-indigo-900 font-medium transition-colors duration-200"
+                        >
+                          Process
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Document Type
-                </label>
-                <p className="mt-1 text-sm text-gray-900">
-                  {selectedDoc.type
-                    .split("_")
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(" ")}
-                </p>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Amount
-                </label>
-                <p className="mt-1 text-sm text-gray-900">
-                  ₹{selectedDoc.amount?.toLocaleString() || "N/A"}
-                </p>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Verified By
-                </label>
-                <p className="mt-1 text-sm text-gray-900">
-                  {selectedDoc.verificationDetails?.verifiedBy?.name || "N/A"}
-                </p>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Remarks
-                </label>
-                <textarea
-                  value={remarks}
-                  onChange={(e) => setRemarks(e.target.value)}
-                  rows={3}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Add any remarks about the payment processing..."
-                />
-              </div>
-
-              <div className="flex justify-end space-x-3">
+          {/* Processing Modal */}
+          {selectedDoc && (
+            <div className="fixed inset-0 bg-gray-500/75 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+              <div className="bg-white rounded-xl max-w-lg w-full p-6 relative shadow-xl">
                 <button
-                  type="button"
                   onClick={() => {
                     setSelectedDoc(null);
                     setRemarks("");
                   }}
-                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="absolute top-4 right-4 text-gray-400 hover:text-gray-500 transition-colors duration-200"
                 >
-                  Cancel
+                  <XMarkIcon className="h-6 w-6" />
                 </button>
-                <button
-                  type="button"
-                  disabled={processingAction !== null}
-                  onClick={() => handleProcess("processing")}
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-                >
-                  {processingAction === "processing"
-                    ? "Processing..."
-                    : "Mark as Processing"}
-                </button>
-                <button
-                  type="button"
-                  disabled={processingAction !== null}
-                  onClick={() => handleProcess("paid")}
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
-                >
-                  {processingAction === "paid"
-                    ? "Processing..."
-                    : "Mark as Paid"}
-                </button>
-                <button
-                  type="button"
-                  disabled={processingAction !== null}
-                  onClick={() => handleProcess("rejected")}
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50"
-                >
-                  {processingAction === "rejected" ? "Processing..." : "Reject"}
-                </button>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  Process Payment
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Student
+                    </label>
+                    <p className="text-sm text-gray-900">
+                      {selectedDoc.student.name}
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Document Type
+                    </label>
+                    <p className="text-sm text-gray-900">
+                      {selectedDoc.type
+                        .split("_")
+                        .map(
+                          (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                        )
+                        .join(" ")}
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Amount
+                    </label>
+                    <p className="text-sm text-gray-900">
+                      ₹{selectedDoc.amount?.toLocaleString() || "N/A"}
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Verified By
+                    </label>
+                    <p className="text-sm text-gray-900">
+                      {selectedDoc.verificationDetails?.verifiedBy?.name ||
+                        "N/A"}
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Remarks
+                    </label>
+                    <textarea
+                      value={remarks}
+                      onChange={(e) => setRemarks(e.target.value)}
+                      rows={3}
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                      placeholder="Add any remarks about the payment processing..."
+                    />
+                  </div>
+
+                  <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-3 sm:gap-3 sm:grid-flow-row-dense">
+                    <button
+                      type="button"
+                      disabled={processingAction !== null}
+                      onClick={() => handleProcess("processing")}
+                      className="w-full inline-flex justify-center items-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:col-start-1 sm:text-sm disabled:opacity-50 transition-all duration-200"
+                    >
+                      {processingAction === "processing"
+                        ? "Processing..."
+                        : "Mark as Processing"}
+                    </button>
+                    <button
+                      type="button"
+                      disabled={processingAction !== null}
+                      onClick={() => handleProcess("paid")}
+                      className="w-full mt-3 inline-flex justify-center items-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:mt-0 sm:text-sm disabled:opacity-50 transition-all duration-200"
+                    >
+                      {processingAction === "paid"
+                        ? "Processing..."
+                        : "Mark as Paid"}
+                    </button>
+                    <button
+                      type="button"
+                      disabled={processingAction !== null}
+                      onClick={() => handleProcess("rejected")}
+                      className="mt-3 w-full inline-flex justify-center items-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-3 sm:text-sm disabled:opacity-50 transition-all duration-200"
+                    >
+                      {processingAction === "rejected"
+                        ? "Processing..."
+                        : "Reject"}
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
