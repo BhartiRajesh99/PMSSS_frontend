@@ -65,7 +65,7 @@ const Landing = () => {
               <div className="relative px-6 py-8">
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-100 text-blue-600 mb-4">
                   <svg
-                    className="w-6 h-6"
+                    className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-blue-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -84,7 +84,7 @@ const Landing = () => {
                 <ul className="text-slate-600 space-y-2">
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-blue-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-blue-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-blue-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-blue-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -116,7 +116,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-blue-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-blue-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -132,7 +132,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-blue-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-blue-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -148,7 +148,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-blue-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-blue-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -172,7 +172,7 @@ const Landing = () => {
               <div className="relative px-6 py-8">
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-purple-100 text-purple-600 mb-4">
                   <svg
-                    className="w-6 h-6"
+                    className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-purple-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -191,7 +191,7 @@ const Landing = () => {
                 <ul className="text-slate-600 space-y-2">
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-purple-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-purple-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -207,7 +207,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-purple-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-purple-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -223,7 +223,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-purple-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-purple-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -239,7 +239,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-purple-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-purple-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -255,7 +255,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-purple-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-purple-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -279,7 +279,7 @@ const Landing = () => {
               <div className="relative px-6 py-8">
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-green-100 text-green-600 mb-4">
                   <svg
-                    className="w-6 h-6"
+                    className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-green-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -298,7 +298,7 @@ const Landing = () => {
                 <ul className="text-slate-600 space-y-2">
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-green-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-green-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -314,7 +314,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-green-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-green-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -330,7 +330,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-green-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-green-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -346,7 +346,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-green-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-green-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -362,7 +362,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-green-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-green-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -386,7 +386,7 @@ const Landing = () => {
               <div className="relative px-6 py-8">
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-amber-100 text-amber-600 mb-4">
                   <svg
-                    className="w-6 h-6"
+                    className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-amber-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -405,7 +405,7 @@ const Landing = () => {
                 <ul className="text-slate-600 space-y-2">
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-amber-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-amber-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -421,7 +421,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-amber-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-amber-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -437,7 +437,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-amber-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-amber-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -453,7 +453,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-amber-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-amber-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -469,7 +469,7 @@ const Landing = () => {
                   </li>
                   <li className="flex text-left items-start">
                     <svg
-                      className="w-5 h-5 text-amber-500 mr-2 mt-1"
+                      className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-amber-500 mr-2 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -731,7 +731,7 @@ const Landing = () => {
               <div className="relative px-6 py-8">
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 mb-6">
                   <svg
-                    className="w-6 h-6"
+                    className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-indigo-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -766,7 +766,7 @@ const Landing = () => {
               <div className="relative px-6 py-8">
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-purple-100 text-purple-600 mb-6">
                   <svg
-                    className="w-6 h-6"
+                    className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-purple-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -801,7 +801,7 @@ const Landing = () => {
               <div className="relative px-6 py-8">
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 mb-6">
                   <svg
-                    className="w-6 h-6"
+                    className="w-4 h-4 min-w-[1rem] min-h-[1rem] text-emerald-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
