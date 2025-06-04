@@ -10,12 +10,12 @@ import SAGDashboard from "./pages/SAGDashboard";
 import FinanceDashboard from "./pages/FinanceDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import Landing from "./pages/Landing";
-import EligibilityChecker from "./pages/EligibilityChecker";
-import ApplicationTracking from "./pages/ApplicationTracking";
-import Chatbot from "./pages/Chatbot";
-import ScholarshipCalculator from "./pages/ScholarshipCalculator";
-import CollegeExplorer from "./pages/CollegeExplorer";
-import DocumentUpload from "./pages/DocumentUpload";
+// import EligibilityChecker from "./pages/EligibilityChecker";
+// import ApplicationTracking from "./pages/ApplicationTracking";
+// import Chatbot from "./pages/Chatbot";
+// import ScholarshipCalculator from "./pages/ScholarshipCalculator";
+// import CollegeExplorer from "./pages/CollegeExplorer";
+// import DocumentUpload from "./pages/DocumentUpload";
 import "./App.css";
 
 // Protected Route component
