@@ -82,7 +82,7 @@ function App() {
         <Route path="/register/student" element={<StudentRegister />} />
 
         {/* Feature Pages */}
-        <Route path="/eligibility-checker" element={<EligibilityChecker />} />
+        {/* <Route path="/eligibility-checker" element={<EligibilityChecker />} />
         <Route path="/application-tracking" element={<ApplicationTracking />} />
         <Route path="/chatbot" element={<Chatbot />} />
         <Route
@@ -90,7 +90,7 @@ function App() {
           element={<ScholarshipCalculator />}
         />
         <Route path="/college-explorer" element={<CollegeExplorer />} />
-        <Route path="/document-upload" element={<DocumentUpload />} />
+        <Route path="/document-upload" element={<DocumentUpload />} /> */}
 
         {/* Protected Routes */}
         <Route
