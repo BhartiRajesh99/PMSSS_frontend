@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../utils/axios";
 import toast from "react-hot-toast";
@@ -9,6 +9,12 @@ export default function FinanceRegister() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
