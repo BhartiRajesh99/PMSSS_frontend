@@ -30,7 +30,7 @@ const Landing = () => {
                     PMSSS Portal
                   </span>
                 </h1>
-                <p className="mt-8 text-justify text-[1.3em] mx-auto text-white leading-relaxed font-sans font-light">
+                <p className="mt-8 text-justify px-2 text-[1em] sm:text-[1.3em] mx-auto text-white leading-relaxed font-sans font-light">
                   The Prime Minister's Special Scholarship Scheme (PMSSS)
                   provides financial support for higher education to eligible
                   students across India. Through our digital platform, students
@@ -78,11 +78,11 @@ const Landing = () => {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">
+                <h3 className="text-xl text-center font-semibold text-slate-900 mb-4">
                   What is PMSSS?
                 </h3>
                 <ul className="text-slate-600 space-y-2">
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-blue-500 mr-2 mt-1"
                       fill="none"
@@ -98,7 +98,7 @@ const Landing = () => {
                     </svg>
                     Digital-first scholarship management system
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-blue-500 mr-2 mt-1"
                       fill="none"
@@ -114,7 +114,7 @@ const Landing = () => {
                     </svg>
                     Streamlined document verification process
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-blue-500 mr-2 mt-1"
                       fill="none"
@@ -130,7 +130,7 @@ const Landing = () => {
                     </svg>
                     Automated workflow between SAG and Finance Bureau
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-blue-500 mr-2 mt-1"
                       fill="none"
@@ -146,7 +146,7 @@ const Landing = () => {
                     </svg>
                     Real-time tracking and status updates
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-blue-500 mr-2 mt-1"
                       fill="none"
@@ -185,11 +185,11 @@ const Landing = () => {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">
+                <h3 className="text-xl text-center font-semibold text-slate-900 mb-4">
                   Key Objectives
                 </h3>
                 <ul className="text-slate-600 space-y-2">
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-purple-500 mr-2 mt-1"
                       fill="none"
@@ -205,7 +205,7 @@ const Landing = () => {
                     </svg>
                     Provide quality education opportunities
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-purple-500 mr-2 mt-1"
                       fill="none"
@@ -221,7 +221,7 @@ const Landing = () => {
                     </svg>
                     Support meritorious students
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-purple-500 mr-2 mt-1"
                       fill="none"
@@ -237,7 +237,7 @@ const Landing = () => {
                     </svg>
                     Promote national integration
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-purple-500 mr-2 mt-1"
                       fill="none"
@@ -253,7 +253,7 @@ const Landing = () => {
                     </svg>
                     Bridge educational gaps
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-purple-500 mr-2 mt-1"
                       fill="none"
@@ -292,11 +292,11 @@ const Landing = () => {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">
+                <h3 className="text-xl text-center font-semibold text-slate-900 mb-4">
                   Benefits
                 </h3>
                 <ul className="text-slate-600 space-y-2">
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-green-500 mr-2 mt-1"
                       fill="none"
@@ -312,7 +312,7 @@ const Landing = () => {
                     </svg>
                     Full tuition fee coverage
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-green-500 mr-2 mt-1"
                       fill="none"
@@ -328,7 +328,7 @@ const Landing = () => {
                     </svg>
                     Hostel accommodation
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-green-500 mr-2 mt-1"
                       fill="none"
@@ -344,7 +344,7 @@ const Landing = () => {
                     </svg>
                     Monthly allowance
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-green-500 mr-2 mt-1"
                       fill="none"
@@ -360,7 +360,7 @@ const Landing = () => {
                     </svg>
                     Travel allowance
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-green-500 mr-2 mt-1"
                       fill="none"
@@ -399,11 +399,11 @@ const Landing = () => {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">
+                <h3 className="text-xl text-center font-semibold text-slate-900 mb-4">
                   Eligibility
                 </h3>
                 <ul className="text-slate-600 space-y-2">
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-amber-500 mr-2 mt-1"
                       fill="none"
@@ -419,7 +419,7 @@ const Landing = () => {
                     </svg>
                     60% minimum marks
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-amber-500 mr-2 mt-1"
                       fill="none"
@@ -435,7 +435,7 @@ const Landing = () => {
                     </svg>
                     Income criteria
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-amber-500 mr-2 mt-1"
                       fill="none"
@@ -451,7 +451,7 @@ const Landing = () => {
                     </svg>
                     Valid domicile certificate
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-amber-500 mr-2 mt-1"
                       fill="none"
@@ -467,7 +467,7 @@ const Landing = () => {
                     </svg>
                     Age limit: 17-23 years
                   </li>
-                  <li className="flex items-start">
+                  <li className="flex text-left items-start">
                     <svg
                       className="w-5 h-5 text-amber-500 mr-2 mt-1"
                       fill="none"
@@ -744,16 +744,16 @@ const Landing = () => {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                <h3 className="text-xl text-center font-semibold text-slate-900 mb-3">
                   For Students
                 </h3>
-                <p className="text-slate-600 mb-6">
+                <p className="text-slate-600 text-center mb-6">
                   Apply for scholarships, track your applications, and manage
                   your financial aid.
                 </p>
                 <Link
                   to="/register/student"
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blye-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+                  className="inline-flex justify-center items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blye-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
                 >
                   Register as Student
                 </Link>
@@ -779,16 +779,16 @@ const Landing = () => {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                <h3 className="text-xl text-center font-semibold text-slate-900 mb-3">
                   For SAG Bureau
                 </h3>
-                <p className="text-slate-600 mb-6">
+                <p className="text-slate-600 text-center mb-6">
                   Manage scholarship applications and verify student
                   eligibility.
                 </p>
                 <Link
                   to="/register/sag"
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200"
+                  className="inline-flex justify-center items-center px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200"
                 >
                   Register as SAG Bureau
                 </Link>
@@ -814,15 +814,15 @@ const Landing = () => {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                <h3 className="text-xl text-center font-semibold text-slate-900 mb-3">
                   For Finance Bureau
                 </h3>
-                <p className="text-slate-600 mb-6">
+                <p className="text-slate-600 text-center mb-6">
                   Process payments and manage financial disbursements.
                 </p>
                 <Link
                   to="/register/finance"
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors duration-200"
+                  className="inline-flex justify-center items-center px-4 py-2 text-sm font-medium text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors duration-200"
                 >
                   Register as Finance Bureau
                 </Link>
