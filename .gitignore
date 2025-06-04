@@ -24,7 +24,6 @@ dist-ssr
 *.sw?
 
 .env.sample
-.gitignore
 ApplicationTracking.jsx
 chatbot.jsx
 collegeexplorer.jsx
