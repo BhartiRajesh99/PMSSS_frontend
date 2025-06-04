@@ -10,6 +10,12 @@ import SAGDashboard from "./pages/SAGDashboard";
 import FinanceDashboard from "./pages/FinanceDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import Landing from "./pages/Landing";
+import EligibilityChecker from "./pages/EligibilityChecker";
+import ApplicationTracking from "./pages/ApplicationTracking";
+import Chatbot from "./pages/Chatbot";
+import ScholarshipCalculator from "./pages/ScholarshipCalculator";
+import CollegeExplorer from "./pages/CollegeExplorer";
+import DocumentUpload from "./pages/DocumentUpload";
 import "./App.css";
 
 // Protected Route component
@@ -74,6 +80,17 @@ function App() {
         <Route path="/register/sag" element={<SAGRegister />} />
         <Route path="/register/finance" element={<FinanceRegister />} />
         <Route path="/register/student" element={<StudentRegister />} />
+
+        {/* Feature Pages */}
+        <Route path="/eligibility-checker" element={<EligibilityChecker />} />
+        <Route path="/application-tracking" element={<ApplicationTracking />} />
+        <Route path="/chatbot" element={<Chatbot />} />
+        <Route
+          path="/scholarship-calculator"
+          element={<ScholarshipCalculator />}
+        />
+        <Route path="/college-explorer" element={<CollegeExplorer />} />
+        <Route path="/document-upload" element={<DocumentUpload />} />
 
         {/* Protected Routes */}
         <Route

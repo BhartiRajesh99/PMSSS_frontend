@@ -23,6 +23,7 @@ const StudentDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [selectedType, setSelectedType] = useState("fee_receipt");
+  const [documentName, setDocumentName] = useState("");
   const [stats, setStats] = useState({
     total: 0,
     pending: 0,
@@ -43,22 +44,9 @@ const StudentDashboard = () => {
       setUploading(true);
 
       try {
-        // Log file details for debugging
-        console.log("Uploading file:", {
-          name: file.name,
-          type: file.type,
-          size: file.size,
-          documentType: selectedType,
-        });
-
         const formData = new FormData();
         formData.append("document", file);
         formData.append("type", selectedType);
-
-        // Log FormData contents
-        for (let pair of formData.entries()) {
-          console.log(pair[0] + ": " + pair[1]);
-        }
 
         const response = await axios.post(
           `${API_BASE_URL}/documents/upload`,
@@ -71,10 +59,18 @@ const StudentDashboard = () => {
           }
         );
 
-        console.log("Upload response:", response.data);
-
         if (response.data) {
+          // Update documents list
           setDocuments((prevDocs) => [...prevDocs, response.data]);
+
+          // Update stats
+          setStats((prevStats) => ({
+            total: prevStats.total + 1,
+            pending: prevStats.pending + 1,
+            verified: prevStats.verified,
+            rejected: prevStats.rejected,
+          }));
+
           toast.success(
             `Document "${response.data.fileName}" uploaded successfully!`
           );
@@ -128,15 +124,17 @@ const StudentDashboard = () => {
 
       const stats = {
         total: response?.data?.data.length,
-        pending: response?.data?.data.filter((doc) => doc.status === "pending").length,
-        verified: response?.data?.data.filter((doc) => doc.status === "verified")
+        pending: response?.data?.data.filter((doc) => doc.status === "pending")
           .length,
-        rejected: response?.data?.data.filter((doc) => doc.status === "rejected")
-          .length,
+        verified: response?.data?.data.filter(
+          (doc) => doc.status === "verified"
+        ).length,
+        rejected: response?.data?.data.filter(
+          (doc) => doc.status === "rejected"
+        ).length,
       };
 
       setStats(stats);
-
     } catch (error) {
       console.error("Error fetching documents:", error);
       toast.error(error.response?.data?.error || "Error fetching documents");
@@ -150,69 +148,67 @@ const StudentDashboard = () => {
     fetchDocuments();
   }, [fetchDocuments]);
 
-  const handleDelete = useCallback(async (id) => {
-    try {
-      // Confirm deletion
-      if (!window.confirm("Are you sure you want to delete this document?")) {
-        return;
-      }
-
-      // Show loading state
-      const docElement = document.querySelector(`[data-doc-id="${id}"]`);
-      if (docElement) {
-        docElement.classList.add("opacity-50");
-      }
-
-      const response = await axios.delete(`${API_BASE_URL}/documents/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-
-      if (response.data.success) {
-        setDocuments((prevDocs) => prevDocs.filter((doc) => doc._id !== id));
-        toast.success("Document deleted successfully");
-      } else {
-        throw new Error(response.data.message || "Failed to delete document");
-      }
-    } catch (error) {
-      console.error("Delete error:", error);
-
-      // Handle specific error cases
-      if (error.response) {
-        const status = error.response.status;
-        const message =
-          error.response.data?.message || error.response.data?.error;
-
-        switch (status) {
-          case 401:
-            toast.error("You are not authorized to delete this document");
-            break;
-          case 403:
-            toast.error("You don't have permission to delete this document");
-            break;
-          case 404:
-            toast.error("Document not found");
-            break;
-          case 500:
-            toast.error("Server error while deleting document");
-            break;
-          default:
-            toast.error(message || "Error deleting document");
+  const handleDelete = useCallback(
+    async (id) => {
+      try {
+        // Confirm deletion
+        if (!window.confirm("Are you sure you want to delete this document?")) {
+          return;
         }
-      } else if (error.request) {
-        toast.error("No response from server. Please check your connection");
-      } else {
-        toast.error(error.message || "An unexpected error occurred");
+
+        // Show loading state
+        const docElement = document.querySelector(`[data-doc-id="${id}"]`);
+        if (docElement) {
+          docElement.classList.add("opacity-50");
+        }
+
+        const response = await axios.delete(`${API_BASE_URL}/documents/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (response.data.success) {
+          // Get the document being deleted to update stats correctly
+          const deletedDoc = documents.find((doc) => doc._id === id);
+
+          // Update documents list
+          setDocuments((prevDocs) => prevDocs.filter((doc) => doc._id !== id));
+
+          // Update stats based on the deleted document's status
+          setStats((prevStats) => ({
+            total: prevStats.total - 1,
+            pending:
+              deletedDoc.status === "pending"
+                ? prevStats.pending - 1
+                : prevStats.pending,
+            verified:
+              deletedDoc.status === "verified"
+                ? prevStats.verified - 1
+                : prevStats.verified,
+            rejected:
+              deletedDoc.status === "rejected"
+                ? prevStats.rejected - 1
+                : prevStats.rejected,
+          }));
+
+          toast.success("Document deleted successfully");
+        } else {
+          throw new Error(response.data.message || "Failed to delete document");
+        }
+      } catch (error) {
+        console.error("Delete error:", error);
+        toast.error(error.response?.data?.error || "Error deleting document");
+      } finally {
+        // Remove loading state
+        const docElement = document.querySelector(`[data-doc-id="${id}"]`);
+        if (docElement) {
+          docElement.classList.remove("opacity-50");
+        }
       }
-    } finally {
-      // Remove loading state
-      const docElement = document.querySelector(`[data-doc-id="${id}"]`);
-      if (docElement) {
-        docElement.classList.remove("opacity-50");
-      }
-    }
-  }, []);
+    },
+    [documents]
+  );
 
   const getStatusColor = useCallback((status) => {
     switch (status) {
@@ -227,8 +223,8 @@ const StudentDashboard = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <FaSpinner className="animate-spin text-4xl text-blue-600" />
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     );
   }
@@ -248,7 +244,7 @@ const StudentDashboard = () => {
             <div className="flex items-center">
               <button
                 onClick={handleLogout}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-sm hover:shadow-md"
               >
                 <ArrowRightOnRectangleIcon className="h-5 w-5 mr-2" />
                 Logout
@@ -275,8 +271,8 @@ const StudentDashboard = () => {
             <div className="bg-white overflow-hidden shadow-sm rounded-xl border border-gray-100 hover:shadow-md transition-shadow duration-200">
               <div className="p-5">
                 <div className="flex items-center">
-                  <div className="flex-shrink-0 p-3 bg-indigo-50 rounded-lg">
-                    <DocumentCheckIcon className="h-6 w-6 text-indigo-600" />
+                  <div className="flex-shrink-0 p-3 bg-blue-50 rounded-lg">
+                    <DocumentCheckIcon className="h-6 w-6 text-blue-600" />
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
@@ -365,35 +361,55 @@ const StudentDashboard = () => {
               <select
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white/50 backdrop-blur-sm"
               >
+                <option value="" disabled>
+                  Select Document Type
+                </option>
                 <option value="fee_receipt">Fee Receipt</option>
                 <option value="attendance_certificate">
                   Attendance Certificate
                 </option>
-                <option value="marksheet">Marksheet</option>
-                <option value="other">Other</option>
+                <option value="marksheet">Academic Marksheet</option>
+                <option value="identity_proof">Identity Proof</option>
+                <option value="income_certificate">Income Certificate</option>
+                <option value="other">Other Document</option>
               </select>
             </div>
+
+            {selectedType === "other" && (
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Document Name
+                </label>
+                <input
+                  type="text"
+                  value={documentName}
+                  onChange={(e) => setDocumentName(e.target.value)}
+                  placeholder="Enter document name"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 bg-white/50 backdrop-blur-sm"
+                />
+              </div>
+            )}
 
             <div
               {...getRootProps()}
               className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-200
                 ${
                   isDragActive
-                    ? "border-indigo-500 bg-indigo-50"
-                    : "border-gray-300 hover:border-indigo-400 hover:bg-gray-50"
+                    ? "border-blue-500 bg-blue-50"
+                    : "border-gray-300 hover:border-blue-400 hover:bg-gray-50"
                 }`}
             >
               <input {...getInputProps()} />
               <FaUpload className="mx-auto text-4xl text-gray-400 mb-4" />
               {uploading ? (
                 <div className="flex items-center justify-center">
-                  <FaSpinner className="animate-spin text-indigo-600 mr-2" />
+                  <FaSpinner className="animate-spin text-blue-600 mr-2" />
                   <span className="text-gray-600">Uploading...</span>
                 </div>
               ) : isDragActive ? (
-                <p className="text-indigo-600 font-medium">
+                <p className="text-blue-600 font-medium">
                   Drop the file here...
                 </p>
               ) : (

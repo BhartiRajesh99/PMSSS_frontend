@@ -124,8 +124,8 @@ export default function SAGDashboard() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+      <div className="flex justify-center items-center min-h-screen h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
       </div>
     );
   }
@@ -142,7 +142,7 @@ export default function SAGDashboard() {
             <div className="flex items-center">
               <button
                 onClick={handleLogout}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600 transition-all duration-200 shadow-sm hover:shadow-md"
               >
                 <ArrowRightOnRectangleIcon className="h-5 w-5 mr-2" />
                 Logout
@@ -159,7 +159,9 @@ export default function SAGDashboard() {
             <h1 className="text-3xl text-center font-bold text-gray-900 mb-2">
               SAG Dashboard
             </h1>
-            <p className="text-gray-600 text-center">Verify and manage student documents</p>
+            <p className="text-gray-600 text-center">
+              Verify and manage student documents
+            </p>
           </div>
 
           {/* Stats Section */}
@@ -320,7 +322,7 @@ export default function SAGDashboard() {
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
                             <button
                               onClick={() => window.open(doc.fileUrl, "_blank")}
-                              className="text-indigo-600 hover:text-indigo-900 font-medium transition-colors duration-200"
+                              className="text-purple-600 hover:text-purple-800 font-medium transition-colors duration-200"
                             >
                               View
                             </button>
@@ -328,7 +330,7 @@ export default function SAGDashboard() {
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
                             <button
                               onClick={() => setSelectedDoc(doc)}
-                              className="text-indigo-600 hover:text-indigo-900 font-medium transition-colors duration-200"
+                              className="text-purple-600 hover:text-purple-800 font-medium transition-colors duration-200"
                             >
                               Verify
                             </button>
@@ -397,32 +399,28 @@ export default function SAGDashboard() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Document Preview
                     </label>
-                    <div className="mt-2">
-                      {selectedDoc.documentUrl && (
-                        <div className="border border-gray-200 rounded-lg p-2">
-                          {selectedDoc.documentUrl.match(
-                            /\.(jpg|jpeg|png|gif)$/i
-                          ) ? (
+                    <div className="mt-2 ">
+                      
+                        <div className="border border-gray-200 rounded-lg p-2 flex flex-col items-center justify-center">
                             <img
-                              src={selectedDoc.documentUrl}
+                              src={selectedDoc.fileUrl}
                               alt="Document preview"
-                              className="max-w-full h-auto rounded"
+                              className="max-w-full h-20 rounded"
                             />
-                          ) : (
-                            <div className="flex items-center justify-center p-4">
+                            <div className="row-2">
                               <a
-                                href={selectedDoc.documentUrl}
+                                href={selectedDoc.fileUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-indigo-600 hover:text-indigo-900 flex items-center font-medium transition-colors duration-200"
+                                className="text-purple-600 hover:text-purple-900 flex items-center font-medium transition-colors duration-200"
                               >
                                 <DocumentCheckIcon className="h-5 w-5 mr-2" />
                                 View Document
                               </a>
                             </div>
-                          )}
+                        
                         </div>
-                      )}
+                      
                     </div>
                   </div>
 
@@ -434,7 +432,7 @@ export default function SAGDashboard() {
                       value={remarks}
                       onChange={(e) => setRemarks(e.target.value)}
                       rows={3}
-                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                      className="mt-1 min-h-10 max-h-24 block w-full p-2 rounded-lg border-purple-300 shadow-sm focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors duration-200"
                       placeholder="Add any remarks about the verification..."
                     />
                   </div>
@@ -444,7 +442,7 @@ export default function SAGDashboard() {
                       type="button"
                       disabled={processingAction !== null}
                       onClick={() => handleVerify("verify")}
-                      className="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm disabled:opacity-50 transition-all duration-200"
+                      className="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-purple-600 text-base font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:col-start-2 sm:text-sm disabled:opacity-50 transition-all duration-200"
                     >
                       {processingAction === "verify"
                         ? "Verifying..."
@@ -454,7 +452,7 @@ export default function SAGDashboard() {
                       type="button"
                       disabled={processingAction !== null}
                       onClick={() => handleVerify("reject")}
-                      className="mt-3 w-full inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm disabled:opacity-50 transition-all duration-200"
+                      className="mt-3 w-full inline-flex justify-center rounded-lg border border-purple-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:mt-0 sm:col-start-1 sm:text-sm disabled:opacity-50 transition-all duration-200"
                     >
                       {processingAction === "reject"
                         ? "Rejecting..."

@@ -111,8 +111,8 @@ export default function FinanceDashboard() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+      <div className="flex justify-center items-center min-h-screen h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
       </div>
     );
   }
@@ -129,7 +129,7 @@ export default function FinanceDashboard() {
             <div className="flex items-center">
               <button
                 onClick={handleLogout}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all duration-200 shadow-sm hover:shadow-md"
               >
                 <ArrowRightOnRectangleIcon className="h-5 w-5 mr-2" />
                 Logout
@@ -355,7 +355,7 @@ export default function FinanceDashboard() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
                         <button
                           onClick={() => setSelectedDoc(doc)}
-                          className="text-indigo-600 hover:text-indigo-900 font-medium transition-colors duration-200"
+                          className="text-emerald-600 hover:text-emerald-900 font-medium transition-colors duration-200"
                         >
                           Process
                         </button>
@@ -434,7 +434,7 @@ export default function FinanceDashboard() {
                       value={remarks}
                       onChange={(e) => setRemarks(e.target.value)}
                       rows={3}
-                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
+                      className="mt-1 block min-h-10 max-h-32 p-2 w-full rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200"
                       placeholder="Add any remarks about the payment processing..."
                     />
                   </div>
@@ -444,7 +444,7 @@ export default function FinanceDashboard() {
                       type="button"
                       disabled={processingAction !== null}
                       onClick={() => handleProcess("processing")}
-                      className="w-full inline-flex justify-center items-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:col-start-1 sm:text-sm disabled:opacity-50 transition-all duration-200"
+                      className="w-full inline-flex justify-center items-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-yellow-500 text-base font-medium text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:col-start-1 sm:text-sm disabled:opacity-50 transition-all duration-200"
                     >
                       {processingAction === "processing"
                         ? "Processing..."
@@ -454,7 +454,7 @@ export default function FinanceDashboard() {
                       type="button"
                       disabled={processingAction !== null}
                       onClick={() => handleProcess("paid")}
-                      className="w-full mt-3 inline-flex justify-center items-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:mt-0 sm:text-sm disabled:opacity-50 transition-all duration-200"
+                      className="w-full mt-3 inline-flex justify-center items-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-emerald-600 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 sm:col-start-2 sm:mt-0 sm:text-sm disabled:opacity-50 transition-all duration-200"
                     >
                       {processingAction === "paid"
                         ? "Processing..."
@@ -464,7 +464,7 @@ export default function FinanceDashboard() {
                       type="button"
                       disabled={processingAction !== null}
                       onClick={() => handleProcess("rejected")}
-                      className="mt-3 w-full inline-flex justify-center items-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-3 sm:text-sm disabled:opacity-50 transition-all duration-200"
+                      className="mt-3 w-full inline-flex justify-center items-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-3 sm:text-sm disabled:opacity-50 transition-all duration-200"
                     >
                       {processingAction === "rejected"
                         ? "Processing..."
