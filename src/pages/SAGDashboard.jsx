@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import axios from "../utils/axios";
+import instance from "../utils/axios.js";
 import toast from "react-hot-toast";
 import {
   DocumentCheckIcon,
@@ -36,9 +36,7 @@ export default function SAGDashboard() {
 
   const fetchDocuments = async () => {
     try {
-      const response = await axios.get(
-        "https://pmsss-backend.vercel.app/api/verify/pending"
-      );
+      const response = await instance.get("/verify/pending");
       if (response.data && Array.isArray(response.data)) {
         setDocuments(response.data);
         // Calculate stats
@@ -84,8 +82,8 @@ export default function SAGDashboard() {
         remarks,
       });
 
-      const response = await axios.post(
-        `https://pmsss-backend.vercel.app/api/verify/${selectedDoc._id}`,
+      const response = await instance.post(
+        `/verify/${selectedDoc._id}`,
         {
           status: status === "verify" ? "verified" : "rejected",
           remarks: remarks || "No remarks provided",
@@ -400,27 +398,24 @@ export default function SAGDashboard() {
                       Document Preview
                     </label>
                     <div className="mt-2 ">
-                      
-                        <div className="border border-gray-200 rounded-lg p-2 flex flex-col items-center justify-center">
-                            <img
-                              src={selectedDoc.fileUrl}
-                              alt="Document preview"
-                              className="max-w-full h-20 rounded"
-                            />
-                            <div className="row-2">
-                              <a
-                                href={selectedDoc.fileUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-purple-600 hover:text-purple-900 flex items-center font-medium transition-colors duration-200"
-                              >
-                                <DocumentCheckIcon className="h-5 w-5 mr-2" />
-                                View Document
-                              </a>
-                            </div>
-                        
+                      <div className="border border-gray-200 rounded-lg p-2 flex flex-col items-center justify-center">
+                        <img
+                          src={selectedDoc.fileUrl}
+                          alt="Document preview"
+                          className="max-w-full h-20 rounded"
+                        />
+                        <div className="row-2">
+                          <a
+                            href={selectedDoc.fileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-purple-600 hover:text-purple-900 flex items-center font-medium transition-colors duration-200"
+                          >
+                            <DocumentCheckIcon className="h-5 w-5 mr-2" />
+                            View Document
+                          </a>
                         </div>
-                      
+                      </div>
                     </div>
                   </div>
 

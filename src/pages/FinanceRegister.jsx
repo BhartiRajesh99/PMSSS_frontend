@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "../utils/axios";
+import instance from "../utils/axios.js";
 import toast from "react-hot-toast";
 import backgroundImage from "../assets/iewek-gnos-hhUx08PuYpc-unsplash.jpg";
 import BackButton from "../components/BackButton";
@@ -363,8 +363,8 @@ export default function FinanceRegister() {
         password: "[REDACTED]",
       });
 
-      const response = await axios.post(
-        "https://pmsss-backend.vercel.app/api/auth/register/finance",
+      const response = await instance.post(
+        "/auth/register/finance",
         formattedData
       );
       toast.success("Registration successful!");

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import axios from "../utils/axios.js";
+import instance from "../utils/axios.js";
 import toast from "react-hot-toast";
 
 const AuthContext = createContext(null);
@@ -24,9 +24,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
 
-      const response = await axios.get(
-        "https://pmsss-backend.vercel.app/api/auth/me"
-      );
+      const response = await instance.get("/auth/me");
       setUser(response.data);
     } catch (error) {
       console.error("Auth check failed:", error);
@@ -48,15 +46,12 @@ export const AuthProvider = ({ children }) => {
         toast.error("Please provide both email and password");
         throw new Error("Email and password are required");
       }
-      
+
       // Make login request based on role
-      const response = await axios.post(
-        `https://pmsss-backend.vercel.app/api/auth/login/${role}`,
-        {
-          email,
-          password,
-        }
-      );
+      const response = await instance.post(`/auth/login/${role}`, {
+        email,
+        password,
+      });
 
       const { token, user } = response.data;
       localStorage.setItem("token", token);
@@ -71,10 +66,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post(
-        "https://pmsss-backend.vercel.app/api/auth/register",
-        userData
-      );
+      const response = await instance.post("/auth/register", userData);
       const { token, user } = response.data;
       localStorage.setItem("token", token);
       setUser(user);

@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useDropzone } from "react-dropzone";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { FaUpload, FaTrash, FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import {
@@ -13,8 +12,7 @@ import {
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import BackButton from "../components/BackButton";
-
-const API_BASE_URL = "https://pmsss-backend.vercel.app/api"; // Add base URL
+import instance from "../utils/axios.js";
 
 const StudentDashboard = () => {
   const { user, logout } = useAuth();
@@ -48,16 +46,12 @@ const StudentDashboard = () => {
         formData.append("document", file);
         formData.append("type", selectedType);
 
-        const response = await axios.post(
-          `${API_BASE_URL}/documents/upload`,
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const response = await instance.post(`/documents/upload`, formData, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
         if (response.data) {
           // Update documents list
@@ -112,7 +106,7 @@ const StudentDashboard = () => {
 
   const fetchDocuments = useCallback(async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/student/documents`, {
+      const response = await instance.get(`/student/documents`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -162,7 +156,7 @@ const StudentDashboard = () => {
           docElement.classList.add("opacity-50");
         }
 
-        const response = await axios.delete(`${API_BASE_URL}/documents/${id}`, {
+        const response = await instance.delete(`/documents/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

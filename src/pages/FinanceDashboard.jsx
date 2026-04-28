@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import axios from "../utils/axios";
+import instance from "../utils/axios.js";
 import toast from "react-hot-toast";
 import {
   CurrencyDollarIcon,
@@ -38,9 +38,7 @@ export default function FinanceDashboard() {
 
   const fetchDocuments = async () => {
     try {
-      const response = await axios.get(
-        "https://pmsss-backend.vercel.app/api/payments/all"
-      );
+      const response = await instance.get("/payments/all");
 
       setDocuments(response.data);
 
@@ -82,8 +80,8 @@ export default function FinanceDashboard() {
 
     setProcessingAction(status);
     try {
-      const response = await axios.post(
-        `https://pmsss-backend.vercel.app/api/payments/${selectedDoc._id}`,
+      const response = await instance.post(
+        `/payments/${selectedDoc._id}`,
         {
           status,
           remarks: remarks || "No remarks provided",
